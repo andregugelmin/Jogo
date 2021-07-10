@@ -1,11 +1,14 @@
 #pragma once
 #include "stdafx.h"
-#include "Teste.h"
+#include "Player.h"
+#include "Enemy.h"
+
 class Jogo
 {
 private:
 	sf::RenderWindow window;
-	Teste teste;
+	Player player1;
+	Enemy enemy1;
 
 public:
 	Jogo();

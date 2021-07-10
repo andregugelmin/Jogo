@@ -14,13 +14,15 @@ Jogo::~Jogo()
 
 void Jogo::Executar()
 {
-    teste.setWindow(&window);
+    player1.setWindow(&window);
+    enemy1.setWindow(&window);
+    enemy1.setTarget(&player1);
 
     while (window.isOpen())
     {
         processaEventos();
         atualiza();
-        renderiza();
+        renderiza(); 
     }
 }
 
@@ -36,12 +38,14 @@ void Jogo::processaEventos()
 
 void Jogo::atualiza()
 {
-
+    player1.move();
+    enemy1.atualiza();
 }
 
 void Jogo::renderiza()
 {
     window.clear();
-    teste.draw();
+    player1.draw();
+    enemy1.draw();
     window.display();
 }
