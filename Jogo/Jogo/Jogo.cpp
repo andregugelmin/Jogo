@@ -14,9 +14,11 @@ Jogo::~Jogo()
 
 void Jogo::Executar()
 {
+    fase1.setWindow(&window);
     player1.setWindow(&window);
     enemy1.setWindow(&window);
     enemy1.setTarget(&player1);
+    
 
     while (window.isOpen())
     {
@@ -45,6 +47,7 @@ void Jogo::atualiza()
 void Jogo::renderiza()
 {
     window.clear();
+    fase1.initScenery();
     player1.draw();
     enemy1.draw();
     window.display();
