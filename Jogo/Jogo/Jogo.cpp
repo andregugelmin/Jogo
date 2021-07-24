@@ -40,7 +40,7 @@ void Jogo::processaEventos()
 
 void Jogo::atualiza()
 {
-    player1.move();
+    player1.update();
     enemy1.atualiza();
 }
 
