@@ -1,31 +1,34 @@
 #pragma once
 #include "Entidade.h"
+#include "Player.h"
 
-enum PLAYER_ANIMATION_STATES { IDLE = 0, MOVING_LEFT, MOVING_RIGHT, JUMPING, FALLING, ATACKING };
+class Game;
 
-class Player :
+//enum ENEMY_ANIMATION_STATES { EIDLE = 0, EMOVING_LEFT, EMOVING_RIGHT };
+
+class Ghost :
     public Entidade
 {
 private:
-    
+
     float horizontalSpeed;
-    float acceleration;
     float gravity;
     float drag;
     float airResistance;
-    float velocityMin;
-    float velocityMaxX;
     float velocityMaxY;
+    float velocityMin;
+    float acceleration;
+    float velocityMaxX;
 
-    bool onGround;
-
+    Player* player;
+    sf::Vector2f targetPos;
+    sf::Vector2f thisPos;
     sf::Vector2f velocity;
     sf::Clock animationTimer;
 
-    //Inicializacao
     void initVariables();
     void initTextura();
-    void initSprite();
+    void initSprite();    
     void initPhysics();
     void initAnimations();
 
@@ -34,19 +37,13 @@ private:
     sf::IntRect currentFrame;
 
 public:
-    Player();
-    ~Player();
+    Ghost();
+    ~Ghost();
 
-    //Functions
-    void move(const float x, const float y);
+    
     void resetVelocityY();
-
-    //Updates
-    void updatePhysics();
-    void updateMovement();
-    void updateAnimations();
-    void updateCollision();
-    void update();
+    void followPlayer();
+    void move(const float x, const float y);
 
     //Getters
     sf::Vector2f getPosition();
@@ -54,5 +51,13 @@ public:
     const sf::FloatRect getGlobalBounds() const;
 
     //Setters
+    void setTarget(Player* _player);
     void setPosition(const float x, const float y);
+
+    //Updates    
+    void updatePhysics();
+    void updateMovement();
+    void updateAnimations();
+    void updateCollision();
+    void update();
 };

@@ -151,7 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Ghost.cpp" />
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Fase1.cpp" />
     <ClCompile Include="Jogo.cpp" />
@@ -161,7 +161,7 @@
     <ClCompile Include="Teste.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Ghost.h" />
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Fase1.h" />
     <ClInclude Include="Jogo.h" />

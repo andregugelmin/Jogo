@@ -41,8 +41,9 @@ void Jogo::processaEventos()
 void Jogo::atualiza()
 {
     player1.update();
-    enemy1.atualiza();
+    enemy1.update();
 }
+
 
 void Jogo::renderiza()
 {
