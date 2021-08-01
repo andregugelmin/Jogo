@@ -12,6 +12,7 @@ public:
 	Entidade();
 	~Entidade();
 	void setWindow(sf::RenderWindow* win);
+	sf::RenderWindow* getWindow() const;
 	void draw();
 };
 

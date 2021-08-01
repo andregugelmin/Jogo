@@ -1,17 +1,19 @@
 #include "Ghost.h"
 
-Ghost::Ghost()
+Ghost::Ghost() : projetil(NULL), player(NULL)
 {
     initVariables();
     initTextura();
     initSprite();
     initPhysics();
     initAnimations();
+    shoot(0);
 }
 
 
 Ghost::~Ghost()
 {
+    if(projetil!=NULL) delete projetil;
 }
 
 
@@ -82,6 +84,11 @@ const sf::FloatRect Ghost::getGlobalBounds() const
     return sprite.getGlobalBounds();
 }
 
+Projetil* Ghost::getProjetil()
+{
+    return projetil;
+}
+
 void Ghost::setPosition(const float x, const float y)
 {
     sprite.setPosition(x, y);
@@ -109,8 +116,7 @@ void Ghost::followPlayer()
     }
     else {
         animState = IDLE;
-    }
-    cout << targetPos.y - thisPos.y << endl;
+    }    
 
 }
 
@@ -123,6 +129,14 @@ void Ghost::move(const float x, const float y)
     }
 
     velocity.y -= y;
+}
+
+void Ghost::shoot(const int d)
+{
+    float posx = 0, posy = 0;
+    posx = getPosition().x;
+    posy = getPosition().y;
+    projetil = new Projetil(d, posx, posy);
 }
 
 void Ghost::updatePhysics()
@@ -193,4 +207,5 @@ void Ghost::update()
     updatePhysics();
     updateCollision();
     updateAnimations();
+    projetil->update();
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "Entidade.h"
 #include "Player.h"
+#include "Projetil.h"
 
 class Game;
 
@@ -21,6 +22,8 @@ private:
     float velocityMaxX;
 
     Player* player;
+    Projetil* projetil;
+
     sf::Vector2f targetPos;
     sf::Vector2f thisPos;
     sf::Vector2f velocity;
@@ -44,11 +47,13 @@ public:
     void resetVelocityY();
     void followPlayer();
     void move(const float x, const float y);
+    void shoot(const int d);
 
     //Getters
     sf::Vector2f getPosition();
     sf::Vector2f getMidPosition();
     const sf::FloatRect getGlobalBounds() const;
+    Projetil* getProjetil();
 
     //Setters
     void setTarget(Player* _player);

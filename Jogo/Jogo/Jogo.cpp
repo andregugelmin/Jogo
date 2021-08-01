@@ -18,7 +18,7 @@ void Jogo::Executar()
     player1.setWindow(&window);
     enemy1.setWindow(&window);
     enemy1.setTarget(&player1);
-    
+    enemy1.getProjetil()->setWindow(&window);
 
     while (window.isOpen())
     {
@@ -51,5 +51,6 @@ void Jogo::renderiza()
     fase1.initScenery();
     player1.draw();
     enemy1.draw();
+    enemy1.getProjetil()->draw();
     window.display();
 }

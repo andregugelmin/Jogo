@@ -151,21 +151,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EntityList.cpp" />
     <ClCompile Include="Ghost.cpp" />
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Fase1.cpp" />
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Projetil.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Teste.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EntityList.h" />
     <ClInclude Include="Ghost.h" />
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Fase1.h" />
     <ClInclude Include="Jogo.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Projetil.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Teste.h" />
   </ItemGroup>
