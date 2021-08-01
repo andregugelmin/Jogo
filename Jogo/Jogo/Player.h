@@ -1,10 +1,9 @@
 #pragma once
-#include "Entidade.h"
+#include "Entity.h"
 
-enum PLAYER_ANIMATION_STATES { IDLE = 0, MOVING_LEFT, MOVING_RIGHT, JUMPING, FALLING, ATACKING };
 
 class Player :
-    public Entidade
+    public Entity
 {
 private:
     
@@ -17,41 +16,33 @@ private:
     float velocityMaxX;
     float velocityMaxY;
 
-    bool onGround;
-
-    sf::Vector2f velocity;
-    sf::Clock animationTimer;
-
-    //Inicializacao
-    void initVariables();
-    void initTextura();
-    void initSprite();
-    void initPhysics();
-    void initAnimations();
-
-    //Animacao
-    short animState;
-    sf::IntRect currentFrame;
+    bool onGround;  
 
 public:
-    Player();
+    Player(sf::Vector2f pos = sf::Vector2f(0.f, 0.f));
     ~Player();
 
+    //Inicializacao
+    void init(GraphicsManager& gm);
+    void initVariables();
+
+
     //Functions
+    void update(GraphicsManager& gm);
+    void draw(GraphicsManager& gm);
+
     void move(const float x, const float y);
     void resetVelocityY();
+
 
     //Updates
     void updatePhysics();
     void updateMovement();
-    void updateAnimations();
-    void updateCollision();
-    void update();
+    void updateCollision(GraphicsManager& gm);
 
     //Getters
     sf::Vector2f getPosition();
     sf::Vector2f getMidPosition();
-    const sf::FloatRect getGlobalBounds() const;
 
     //Setters
     void setPosition(const float x, const float y);

@@ -1,10 +1,8 @@
 #include "Projetil.h"
-
-Projetil::Projetil(const int d, const float posx, const float posy): dir(d)
+/*
+Projetil::Projetil(sf::Vector2f pos, sf::Vector2f vel): Entity(pos, vel, "Textures/Enemy1_projectil.png")
 {
-    initTextura();
-    initSprite();
-    sprite.setPosition(posx, posy);
+   
 }
 
 
@@ -12,28 +10,25 @@ Projetil::~Projetil()
 {
 }
 
-void Projetil::initTextura()
+void Projetil::init(GraphicsManager& gm)
 {
-    if (!textura.loadFromFile("Texturas/Ghost_projectil.png"))
-    {
-        cout << "Load Failed" << endl;
-        system("pause");
-    }
+    gm.loadTexture(path);
+
+    dimensions = gm.getSize(path);
+
 }
 
-void Projetil::initSprite()
+void Projetil::draw(GraphicsManager& gm)
 {
-    sprite.setTexture(textura);    
+    gm.draw(path, position);
+
+    gm.center(position);
 }
 
-void Projetil::update()
-{
-    if (dir == 0) {
-        sprite.move(1.f, 0);
-    }
-    else {
-        sprite.move(-1.f, 0);
-    }
 
-    cout << sprite.getPosition().x << "   " << sprite.getPosition().y << endl;
+void Projetil::update(GraphicsManager& gm)
+{
+    position += velocity;
 }
+
+*/

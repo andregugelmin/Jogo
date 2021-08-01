@@ -1,61 +1,43 @@
 #include "Player.h"
 
-Player::Player()
+Player::Player(sf::Vector2f pos):
+    Entity(pos, sf::Vector2f(0.f,0.f), "Textures/Player1.png")
 {
-    initVariables();
-    initTextura();
-    initSprite();
-    initPhysics();
-    initAnimations();
+    initVariables();   
 }
 
 Player::~Player()
 {
 }
 
+void Player::init(GraphicsManager& gm)
+{
+    gm.loadTexture(path);
+
+    dimensions = gm.getSize(path);
+}
+
+void Player::draw(GraphicsManager& gm)
+{
+    gm.draw(path, position);
+
+    gm.center(position);
+}
 
 void Player::initVariables()
 {
-    animState = IDLE;
     onGround = false;
-    horizontalSpeed = 3.f;
-}
-
-void Player::initTextura()
-{
-    if (!textura.loadFromFile("Texturas/Player_spritesheet.png"))
-    {
-        cout << "Load Failed" << endl;
-        system("pause");
-    }
-}
-
-void Player::initSprite()
-{
-    sprite.setTexture(textura);
-    currentFrame = sf::IntRect(0, 3, 100, 59);
-    sprite.setTextureRect(currentFrame);
-    sprite.setPosition(sf::Vector2f(100.f, 100.f));
-}
-
-void Player::initPhysics()
-{
+    horizontalSpeed = 1.25f;
     gravity = 2.f;
     acceleration = 1.f;
     drag = 0.8f;
-    airResistance = 0.8f;
+    airResistance = 0.98f;
     velocityMaxX = 5.f;
     velocityMaxY = 15.f;
     velocityMin = 1.f;
     velocity.x = 0;
     velocity.y = 0;
 }
-
-void Player::initAnimations()
-{
-    animationTimer.restart();
-}
-
 
 
 void Player::move(const float x, const float y)
@@ -67,6 +49,8 @@ void Player::move(const float x, const float y)
     }
 
     velocity.y -= y;
+
+    position += velocity;
 }
 
 void Player::resetVelocityY()
@@ -88,135 +72,63 @@ void Player::updatePhysics()
     if (abs(velocity.x) < velocityMin) velocity.x = 0.f;
     if (abs(velocity.y) < velocityMin) velocity.y = 0.f;
 
-    sprite.move(velocity);
+    position += velocity;
 }
 
 void Player::updateMovement()
-{
+{       
     
-    
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
         move(horizontalSpeed, 0);
-        if (onGround) animState = MOVING_RIGHT;
-        sprite.setScale(1.0f, 1.0f);
-        sprite.setOrigin(0.f, 0.f);
     }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
         move(-horizontalSpeed, 0);
-        if (onGround) animState = MOVING_LEFT;
-        sprite.setScale(-1.0f, 1.0f);
-        sprite.setOrigin(sprite.getGlobalBounds().width, 0.f);
     }
-
     if (onGround) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-            move(0.f, 50.f);
-            onGround = false;
-            currentFrame.left = 0;
-            animationTimer.restart();
-            animState = JUMPING;
-            
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+            move(0.f, 15.f);
+            onGround = false;            
         }
-    }
-    
+    }    
 }
 
-void Player::updateAnimations()
-{     
-
-    if (animState == IDLE) {
-        if (animationTimer.getElapsedTime().asSeconds() >= 0.2f) {
-           
-            currentFrame.top = 177.f;
-            currentFrame.left += 100.f;
-            if (currentFrame.left >= 400.f) currentFrame.left = 0;            
-
-            animationTimer.restart();
-            sprite.setTextureRect(currentFrame);
-        }
-    }
-    else if (animState == MOVING_RIGHT) {
-        if (animationTimer.getElapsedTime().asSeconds() >= 0.2f) {
-            currentFrame.top = 118.f;
-            currentFrame.left += 100.f;
-            if (currentFrame.left >= 600.f) currentFrame.left = 0;
-
-            animationTimer.restart();
-            sprite.setTextureRect(currentFrame);
-            
-        }
-        
-    }
-    else if (animState == MOVING_LEFT) {
-        if (animationTimer.getElapsedTime().asSeconds() >= 0.2f) {
-            currentFrame.top = 118.f;
-            currentFrame.left += 100.f;
-            if (currentFrame.left >= 600.f) currentFrame.left = 0;
-
-            animationTimer.restart();
-            sprite.setTextureRect(currentFrame);
-            
-        }
-        
-    }    
-    else if (animState == JUMPING) {
-        if (animationTimer.getElapsedTime().asSeconds() >= 0.1f) {
-            currentFrame.top = 59.f;
-            currentFrame.left += 100.f;
-            if (currentFrame.left >= 100.f) currentFrame.left = 100.f;
-
-            animationTimer.restart();
-            sprite.setTextureRect(currentFrame);
-
-        }        
-    }
-    else animationTimer.restart();
-
-    if (onGround) {
-        animState = IDLE;
-    }    
-    
-}
-
-void Player::updateCollision()
+void Player::updateCollision(GraphicsManager& gm)
 {
-    if (getPosition().y + getGlobalBounds().height > window->getSize().y) {
+    if (getPosition().y + getDimensions().y > gm.getWindow()->getSize().y) {
         setPosition(getPosition().x,
-            window->getSize().y - getGlobalBounds().height);
+            gm.getWindow()->getSize().y - getDimensions().y);
         resetVelocityY();
         onGround = true;
     }
 }
 
-void Player::update()
+void Player::update(GraphicsManager& gm)
 {    
     updateMovement();
     updatePhysics();
-    updateCollision();
-    updateAnimations();    
+    updateCollision(gm);
+
+    std::cout << velocity.x << "," << velocity.y << endl;
 }
 
 sf::Vector2f Player::getPosition()
 {
-    return sprite.getPosition();
+    return position;
 }
 
 sf::Vector2f Player::getMidPosition()
 {
-    sf::Vector2f midPos = getPosition();
-    midPos.x += getGlobalBounds().width / 2;
-    midPos.y += getGlobalBounds().height / 2;
+    sf::Vector2f midPos = position;
+    midPos.x /= 2;
+    midPos.y /= 2;
     return midPos;
 }
 
-const sf::FloatRect Player::getGlobalBounds() const
-{
-    return sprite.getGlobalBounds();
-}
 
 void Player::setPosition(const float x, const float y)
 {
-    sprite.setPosition(x, y);
+    position.x = x;
+    position.y = y;
 }
 
 

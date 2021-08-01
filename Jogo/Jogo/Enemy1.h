@@ -1,14 +1,14 @@
 #pragma once
-#include "Entidade.h"
+#include "Entity.h"
 #include "Player.h"
-#include "Projetil.h"
+//#include "Projetil.h"
 
 class Game;
 
 //enum ENEMY_ANIMATION_STATES { EIDLE = 0, EMOVING_LEFT, EMOVING_RIGHT };
 
-class Ghost :
-    public Entidade
+class Enemy1 :
+    public Entity
 {
 private:
 
@@ -22,38 +22,29 @@ private:
     float velocityMaxX;
 
     Player* player;
-    Projetil* projetil;
+    //Projetil* projetil;
 
-    sf::Vector2f targetPos;
-    sf::Vector2f thisPos;
-    sf::Vector2f velocity;
-    sf::Clock animationTimer;
-
-    void initVariables();
-    void initTextura();
-    void initSprite();    
-    void initPhysics();
-    void initAnimations();
-
-    //Animacao
-    short animState;
-    sf::IntRect currentFrame;
+   
 
 public:
-    Ghost();
-    ~Ghost();
+    Enemy1(sf::Vector2f pos = sf::Vector2f(0.f, 0.f), sf::Vector2f vel = sf::Vector2f(0.f, 0.f), Player* p = nullptr);
+    ~Enemy1();
 
-    
+    void init(GraphicsManager& gm);
+    void update(GraphicsManager& gm);
+    void draw(GraphicsManager& gm);
+
+    void initVariables();
+
     void resetVelocityY();
     void followPlayer();
     void move(const float x, const float y);
-    void shoot(const int d);
+    //void shoot(const int d);
 
     //Getters
     sf::Vector2f getPosition();
     sf::Vector2f getMidPosition();
-    const sf::FloatRect getGlobalBounds() const;
-    Projetil* getProjetil();
+    //Projetil* getProjetil();
 
     //Setters
     void setTarget(Player* _player);
@@ -62,7 +53,6 @@ public:
     //Updates    
     void updatePhysics();
     void updateMovement();
-    void updateAnimations();
-    void updateCollision();
-    void update();
+    void updateCollision(GraphicsManager& gm);
+ 
 };

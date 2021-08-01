@@ -1,5 +1,6 @@
 #include "Fase1.h"
 #include "stdafx.h"
+/*
 void Fase1::initTextura()
 {
     if (!image.loadFromFile("Texturas/Ground.png"))
@@ -50,3 +51,5 @@ void Fase1::initScenery()
     sprite.setTextureRect(sf::IntRect(0, 0, 700, 29));
     window->draw(sprite);
 }
+*/
+

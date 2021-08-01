@@ -1,85 +1,26 @@
 #pragma once
 
-#include "SFML/Graphics.hpp"
+#include "Entity.h"
+#include "List.h"
 
-template <typename TL>
+class GraphicsManager;
+
 class EntityList
 {
 private:
-	
-	template <typename TE>
-	class ListElement {
-	private:
-		TE* pInfo;
-		ListElement<TE>* pPrev;
-		ListElement<TE>* pNext;
 
-	public:
-		ListElement(TE* info = NULL, ListElement<TE>* prev = NULL, ListElement<TE>* next = NULL);
-		~ListElement();
+    List<Entity*> list;
 
-		TE* getInfo() const;
-		ListElement* getPrev() const;
-		ListElement* getNext() const;
+public:
 
-		void setInfo(TE* info);
-		void setPrev(ListElement* prev);
-		void setNext(ListElement* next);
-	};
+    EntityList();
+    ~EntityList();
 
-	EntityList();
-	~EntityList();
+    void insert(Entity* info);
 
-	void insert(TL* info);
-	void clear();
-		
 
-	TL* getFirst() const; 
-	TL* getNext() const; 
-
-	void updateElement(float t);
-	void drawElement(sf::RenderWindow* window);
-	void destroyElement();
+    void initEntities(GraphicsManager& gm);
+    void updateEntities(GraphicsManager& gm);
+    void drawEntities(GraphicsManager& gm);
+    void destroyEntities();
 };
-
-template <typename TL>
-template <typename TE>
-EntityList<TL>::ListElement<TE>::ListElement(TE* info, ListElement<TE>* prev, ListElement<TE>* next) :
-    pInfo{ info }, pPrev{ prev }, pNext{ next } {
-
-}
-
-template <typename TL>
-template <typename TE>
-EntityList<TL>::ListElement<TE>::~ListElement() {
-
-}
-
-template <typename TL>
-template <typename TE>
-TE* EntityList<TL>::ListElement<TE>::getInfo() const{
-    return pInfo;
-}
-
-
-template<typename TL>
-template<typename TE>
-typename EntityList<TL>::template ListElement<TE>* EntityList<TL>::ListElement<TE>::getPrev() const
-{
-    return pPrev;
-}
-
-template<typename TL>
-template<typename TE>
-typename EntityList<TL>::template ListElement<TE>* EntityList<TL>::ListElement<TE>::getNext() const
-{
-	return pNext;
-}
-
-template<typename TL>
-template<typename TE>
- void EntityList<TL>::ListElement<TE>::setInfo(TE* info)
-{
-	 pInfo = info;
-}
-

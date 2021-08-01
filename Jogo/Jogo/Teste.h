@@ -1,6 +1,6 @@
 #pragma once
-#include "Entidade.h"
-class Teste : public Entidade
+#include "Entity.h"
+class Teste : public Entity
 {
 private:
 	void initTextura();

@@ -1,19 +1,22 @@
 #pragma once
-#include "Entidade.h"
-class Projetil :
-    public Entidade
+#include "Entity.h"
+/*
+* class Projetil :
+    public Entity
 {
 private:
 
     int dir;
 
 public:
-    Projetil(const int d = 0,const float posx = 0, const float posy = 0);
+    Projetil(sf::Vector2f pos = sf::Vector2f(0.f, 0.f), sf::Vector2f vel = sf::Vector2f(0.f, 0.f));
     ~Projetil();
 
-    void initTextura();
-    void initSprite();
-    
-    void update();
+    void init(GraphicsManager& gm);
+    void update(GraphicsManager& gm);
+    void draw(GraphicsManager& gm);
+
 };
+*/
+
 
