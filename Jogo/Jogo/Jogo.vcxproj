@@ -151,6 +151,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="EntityList.cpp" />
     <ClCompile Include="Enemy1.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -162,6 +164,8 @@
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="EntityList.h" />
     <ClInclude Include="Enemy1.h" />
     <ClInclude Include="Entity.h" />

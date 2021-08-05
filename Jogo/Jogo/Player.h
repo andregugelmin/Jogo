@@ -1,13 +1,12 @@
 #pragma once
-#include "Entity.h"
+#include "Collider.h"
 
 
 class Player :
-    public Entity
+    public Collider
 {
 private:
     
-    float horizontalSpeed;
     float acceleration;
     float gravity;
     float drag;
@@ -19,11 +18,11 @@ private:
     bool onGround;  
 
 public:
-    Player(sf::Vector2f pos = sf::Vector2f(0.f, 0.f));
+    Player(sf::Vector2f pos = sf::Vector2f(0.f, 0.f), const char* id = nullptr);
     ~Player();
 
     //Inicializacao
-    void init(GraphicsManager& gm);
+    void init(GraphicsManager& gm, CollisionManager& cm);
     void initVariables();
 
 
@@ -31,9 +30,11 @@ public:
     void update(GraphicsManager& gm);
     void draw(GraphicsManager& gm);
 
+
     void move(const float x, const float y);
     void resetVelocityY();
 
+    void collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim);
 
     //Updates
     void updatePhysics();
@@ -42,7 +43,6 @@ public:
 
     //Getters
     sf::Vector2f getPosition();
-    sf::Vector2f getMidPosition();
 
     //Setters
     void setPosition(const float x, const float y);

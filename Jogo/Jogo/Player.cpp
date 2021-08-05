@@ -1,20 +1,23 @@
 #include "Player.h"
 
-Player::Player(sf::Vector2f pos):
-    Entity(pos, sf::Vector2f(0.f,0.f), "Textures/Player1.png")
-{
-    initVariables();   
+Player::Player(sf::Vector2f pos, const char* id):
+    Collider(pos, sf::Vector2f(0.f,0.f), "Textures/Player1.png", id)
+{  
 }
 
 Player::~Player()
 {
 }
 
-void Player::init(GraphicsManager& gm)
+void Player::init(GraphicsManager& gm, CollisionManager& cm)
 {
     gm.loadTexture(path);
 
     dimensions = gm.getSize(path);
+
+    cm.addCollider(this);
+
+    initVariables();
 }
 
 void Player::draw(GraphicsManager& gm)
@@ -27,12 +30,11 @@ void Player::draw(GraphicsManager& gm)
 void Player::initVariables()
 {
     onGround = false;
-    horizontalSpeed = 1.25f;
     gravity = 2.f;
-    acceleration = 1.f;
-    drag = 0.8f;
+    acceleration = 1.25f;
+    drag = 0.9f;
     airResistance = 0.98f;
-    velocityMaxX = 5.f;
+    velocityMaxX = 15.f;
     velocityMaxY = 15.f;
     velocityMin = 1.f;
     velocity.x = 0;
@@ -42,15 +44,10 @@ void Player::initVariables()
 
 void Player::move(const float x, const float y)
 {
-    velocity.x += x * acceleration;
-
-    if (abs(velocity.x) > velocityMaxX) {
-        velocity.x = velocityMaxX * ((velocity.x < 0.f) ? -1.f : 1.f);
-    }
+    velocity.x += x;
 
     velocity.y -= y;
 
-    position += velocity;
 }
 
 void Player::resetVelocityY()
@@ -58,19 +55,26 @@ void Player::resetVelocityY()
     velocity.y = 0.f;
 }
 
+void Player::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim)
+{
+    
+}
+
 void Player::updatePhysics()
 {
     velocity.y += 1.0 * gravity;
-    if (velocity.y > velocityMaxY) {
-        velocity.y = velocityMaxY;
-    }
+    if (velocity.y > velocityMaxY) velocity.y = velocityMaxY;
 
+    if (abs(velocity.x) > velocityMaxX) {
+        velocity.x = velocityMaxX * ((velocity.x < 0.f) ? -1.f : 1.f);
+    }
 
     velocity.x *= drag;
     velocity.y *= airResistance;
 
     if (abs(velocity.x) < velocityMin) velocity.x = 0.f;
     if (abs(velocity.y) < velocityMin) velocity.y = 0.f;
+    
 
     position += velocity;
 }
@@ -79,10 +83,10 @@ void Player::updateMovement()
 {       
     
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        move(horizontalSpeed, 0);
+        move(acceleration, 0);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        move(-horizontalSpeed, 0);
+        move(-acceleration, 0);
     }
     if (onGround) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
@@ -97,7 +101,7 @@ void Player::updateCollision(GraphicsManager& gm)
     if (getPosition().y + getDimensions().y > gm.getWindow()->getSize().y) {
         setPosition(getPosition().x,
             gm.getWindow()->getSize().y - getDimensions().y);
-        resetVelocityY();
+        if(velocity.y > 0) resetVelocityY();
         onGround = true;
     }
 }
@@ -105,23 +109,12 @@ void Player::updateCollision(GraphicsManager& gm)
 void Player::update(GraphicsManager& gm)
 {    
     updateMovement();
-    updatePhysics();
     updateCollision(gm);
-
-    std::cout << velocity.x << "," << velocity.y << endl;
 }
 
 sf::Vector2f Player::getPosition()
 {
     return position;
-}
-
-sf::Vector2f Player::getMidPosition()
-{
-    sf::Vector2f midPos = position;
-    midPos.x /= 2;
-    midPos.y /= 2;
-    return midPos;
 }
 
 

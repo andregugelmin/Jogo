@@ -4,6 +4,7 @@
 #include "List.h"
 
 class GraphicsManager;
+class CollisionManager;
 
 class EntityList
 {
@@ -19,8 +20,8 @@ public:
     void insert(Entity* info);
 
 
-    void initEntities(GraphicsManager& gm);
-    void updateEntities(GraphicsManager& gm);
+    void initEntities(GraphicsManager& gm, CollisionManager& cm);
+    void updateEntities(GraphicsManager& gm, CollisionManager& cm);
     void drawEntities(GraphicsManager& gm);
     void destroyEntities();
 };

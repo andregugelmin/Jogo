@@ -2,7 +2,7 @@
 #include <iostream>
 
 GraphicsManager::GraphicsManager() :
-	window(new sf::RenderWindow(sf::VideoMode(800, 600), "Game")),
+	window(new sf::RenderWindow(sf::VideoMode(800, 600), "Game", sf::Style::Close | sf::Style::Resize)),
 	camera(sf::Vector2f(800, 600), sf::Vector2f(800, 600))
 {
 	window->setView(camera);
@@ -66,7 +66,7 @@ bool GraphicsManager::loadTexture(const std::string& path)
 
 void GraphicsManager::center(const sf::Vector2f center)
 {
-	camera.setCenter(sf::Vector2f(center.x, window->getPosition().y + 50));
+	camera.setCenter(sf::Vector2f(center.x, center.y - 150));
 	window->setView(camera);
 }
 

@@ -8,7 +8,7 @@ Entity::~Entity()
 {
 }
 
-void Entity::init(GraphicsManager& gm)
+void Entity::init(GraphicsManager& gm, CollisionManager& cm)
 {
 	gm.loadTexture(path);
 
@@ -34,3 +34,4 @@ const sf::Vector2f Entity::getDimensions() const
 {
 	return dimensions;
 }
+

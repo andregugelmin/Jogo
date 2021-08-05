@@ -3,13 +3,13 @@
 Main::Main():
     isWindowClosed(false)
 {
-    player = new Player(sf::Vector2f(200.f, 0.f));
+    player = new Player(sf::Vector2f(200.f, 0.f), "player");
     entitiesList.insert(player);
-    entitiesList.insert(new Enemy1(sf::Vector2f(200.f, 400.f), sf::Vector2f(0.f, 0.f), player));
-    entitiesList.insert(new Enemy1(sf::Vector2f(400.f, 400.f), sf::Vector2f(0.f, 0.f), player));
-    entitiesList.insert(new Enemy1(sf::Vector2f(600.f, 400.f), sf::Vector2f(0.f, 0.f), player));
+    entitiesList.insert(new Enemy1(sf::Vector2f(100.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy", player));
+    entitiesList.insert(new Enemy1(sf::Vector2f(400.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy", player));
+    entitiesList.insert(new Enemy1(sf::Vector2f(900.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy", player));
 
-    entitiesList.initEntities(graphicsManager);
+    entitiesList.initEntities(graphicsManager, collisionManager);
    
 
     execute();
@@ -36,8 +36,7 @@ void Main::execute()
 
         graphicsManager.clear();
 
-        entitiesList.updateEntities(graphicsManager);
-
+        entitiesList.updateEntities(graphicsManager, collisionManager);
 
         entitiesList.drawEntities(graphicsManager);
 

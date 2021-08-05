@@ -1,6 +1,6 @@
 #include "EntityList.h"
 #include <iostream>
-
+#include "Collider.h"
 
 EntityList::EntityList() {
 }
@@ -15,28 +15,26 @@ void EntityList::insert(Entity* info) {
 }
 
 
-void EntityList::initEntities(GraphicsManager& gm)
+void EntityList::initEntities(GraphicsManager& gm, CollisionManager& cm)
 {
     Entity* paux = list.getBegin();
 
     while (paux) {
 
-        paux->init(gm);
+        paux->init(gm, cm);
 
         paux = list.getNext();
 
     }
 }
 
-void EntityList::updateEntities(GraphicsManager& gm) {
-
+void EntityList::updateEntities(GraphicsManager& gm, CollisionManager& cm) {
+    
     Entity* paux = list.getBegin();
-
-
     while (paux) {
-
         paux->update(gm);
-
+        cm.checkCollisions();
+        paux->updatePhysics();
         paux = list.getNext();
 
     }

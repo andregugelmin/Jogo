@@ -1,7 +1,7 @@
 #include "Enemy1.h"
 
-Enemy1::Enemy1(sf::Vector2f pos, sf::Vector2f vel, Player* p):
-    Entity(pos, vel, "Textures/Enemy1.png"), player(p)
+Enemy1::Enemy1(sf::Vector2f pos, sf::Vector2f vel, const char* id, Player* p):
+    Collider(pos, vel, "Textures/Enemy1.png", id), player(p)
 {
  
 }
@@ -12,13 +12,15 @@ Enemy1::~Enemy1()
     //if(projetil!=NULL) delete projetil;
 }
 
-void Enemy1::init(GraphicsManager& gm)
+void Enemy1::init(GraphicsManager& gm, CollisionManager& cm)
 {
-    gm.loadTexture(path);
+gm.loadTexture(path);
 
-    dimensions = gm.getSize(path);
+dimensions = gm.getSize(path);
 
-    initVariables();
+cm.addCollider(this);
+
+initVariables();
 }
 
 void Enemy1::draw(GraphicsManager& gm)
@@ -29,20 +31,19 @@ void Enemy1::draw(GraphicsManager& gm)
 
 void Enemy1::initVariables()
 {
-    horizontalSpeed = 0.5f;
-    acceleration = 1.f;
+    acceleration = 0.75f;
     gravity = 2.f;
-    drag = 0.85f;
+    drag = 0.95f;
     airResistance = 0.8f;
-    velocityMaxX = 5.f;
+    velocityMaxX = 20.f;
     velocityMaxY = 15.f;
-    velocityMin = 1.f;
+    velocityMin = 0.5f;
 }
 
 
 void Enemy1::setTarget(Player* _player)
 {
-	player = _player;
+    player = _player;
 }
 
 void Enemy1::resetVelocityY()
@@ -53,14 +54,6 @@ void Enemy1::resetVelocityY()
 sf::Vector2f Enemy1::getPosition()
 {
     return position;
-}
-
-sf::Vector2f Enemy1::getMidPosition()
-{
-    sf::Vector2f midPos = position;
-    midPos.x /= 2;
-    midPos.y /= 2;
-    return midPos;
 }
 
 
@@ -75,34 +68,34 @@ void Enemy1::setPosition(const float x, const float y)
     position.y = y;
 }
 
-void Enemy1::followPlayer()
-{
-    if (player) {
-        sf::Vector2f targetPos = player->getMidPosition();
-        sf::Vector2f thisPos = getMidPosition();
-
-        if (targetPos.y - thisPos.y <= 5 && targetPos.y - thisPos.y > -100) {
-
-            if ((targetPos.x - thisPos.x) > 100.f) {
-                move(horizontalSpeed, 0);
-
-            }
-            else if ((targetPos.x - thisPos.x) < -100.f) {
-                move(-horizontalSpeed, 0);
-            }
-        }
-    }
-}
 
 void Enemy1::move(const float x, const float y)
 {
-    velocity.x += x * acceleration;
-
-    if (abs(velocity.x) > velocityMaxX) {
-        velocity.x = velocityMaxX * ((velocity.x < 0.f) ? -1.f : 1.f);
-    }
+    velocity.x += x;
 
     velocity.y -= y;
+}
+
+void Enemy1::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim)
+{
+    if (otherId == "enemy") {
+        sf::Vector2f delta;
+        sf::Vector2f nextPos;
+
+        nextPos = position + velocity;
+
+        delta = otherPos - position;        
+       
+        if ((delta.x > 0.0f && nextPos.x > 0.0f)) {
+            velocity.x = 0;
+            position.x = otherPos.x - dimensions.x*0.9f;
+        }
+        else if((delta.x < 0.0f && nextPos.x < 0.0f)) {
+            velocity.x = 0;
+            position.x = otherPos.x + dimensions.x * 0.9f;
+        }
+                
+    }
 }
 
 /*
@@ -118,14 +111,20 @@ void Enemy1::move(const float x, const float y)
 
 void Enemy1::updatePhysics()
 {
-    velocity.y += 1.0 * gravity;
+    velocity.y += gravity;
     if (velocity.y > velocityMaxY) {
         velocity.y = velocityMaxY;
+    }
+
+    if (abs(velocity.x) > velocityMaxX) {
+        velocity.x = velocityMaxX * ((velocity.x < 0.f) ? -1.f : 1.f);
     }
 
     velocity.y *= airResistance;
     velocity.x *= drag;
 
+
+    if (abs(velocity.x) < velocityMin) velocity.x = 0.f;
     if (abs(velocity.y) < velocityMin) velocity.y = 0.f;
 
     position+=velocity;
@@ -133,7 +132,21 @@ void Enemy1::updatePhysics()
 
 void Enemy1::updateMovement()
 {
-    followPlayer();
+    if (player) {
+        sf::Vector2f targetPos = player->getPosition();
+        sf::Vector2f thisPos = getPosition();
+
+        if (targetPos.y - thisPos.y <= 5.f && targetPos.y - thisPos.y > -200.f) {
+
+            if ((targetPos.x - thisPos.x) > 10.f) {
+                move(acceleration, 0);
+
+            }
+            else if ((targetPos.x - thisPos.x) < -10.f) {
+                move(-acceleration, 0);
+            }
+        }
+    }
 }
 
 void Enemy1::updateCollision(GraphicsManager& gm)
@@ -149,7 +162,6 @@ void Enemy1::updateCollision(GraphicsManager& gm)
 void Enemy1::update(GraphicsManager& gm)
 {
     updateMovement();
-    updatePhysics();
     updateCollision(gm);
     //projetil->update(gm);
 }
