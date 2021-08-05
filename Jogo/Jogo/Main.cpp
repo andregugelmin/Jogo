@@ -7,7 +7,7 @@ Main::Main():
     entitiesList.insert(player);
     entitiesList.insert(new Enemy1(sf::Vector2f(100.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy", player));
     entitiesList.insert(new Enemy1(sf::Vector2f(400.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy", player));
-    entitiesList.insert(new Enemy1(sf::Vector2f(900.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy", player));
+    entitiesList.insert(new Enemy2(sf::Vector2f(500.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy2", player));
 
     entitiesList.initEntities(graphicsManager, collisionManager);
    

@@ -20,17 +20,10 @@ void Player::init(GraphicsManager& gm, CollisionManager& cm)
     initVariables();
 }
 
-void Player::draw(GraphicsManager& gm)
-{
-    gm.draw(path, position);
-
-    gm.center(position);
-}
-
 void Player::initVariables()
 {
     onGround = false;
-    gravity = 2.f;
+    gravity = 1.5f;
     acceleration = 1.25f;
     drag = 0.9f;
     airResistance = 0.98f;
@@ -41,6 +34,18 @@ void Player::initVariables()
     velocity.y = 0;
 }
 
+void Player::update(GraphicsManager& gm)
+{
+    updateMovement();
+    updateCollision(gm);
+}
+
+void Player::draw(GraphicsManager& gm)
+{
+    gm.draw(path, position);
+
+    gm.center(position);
+}
 
 void Player::move(const float x, const float y)
 {
@@ -106,11 +111,7 @@ void Player::updateCollision(GraphicsManager& gm)
     }
 }
 
-void Player::update(GraphicsManager& gm)
-{    
-    updateMovement();
-    updateCollision(gm);
-}
+
 
 sf::Vector2f Player::getPosition()
 {

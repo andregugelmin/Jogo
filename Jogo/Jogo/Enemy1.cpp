@@ -36,8 +36,8 @@ void Enemy1::initVariables()
     drag = 0.95f;
     airResistance = 0.8f;
     velocityMaxX = 20.f;
-    velocityMaxY = 15.f;
     velocityMin = 0.5f;
+    velocityMaxY = 15.f;
 }
 
 

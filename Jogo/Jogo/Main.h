@@ -5,6 +5,7 @@
 #include "EntityList.h"
 #include "Player.h"
 #include "Enemy1.h"
+#include "Enemy2.h"
 
 class Main
 {

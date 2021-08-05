@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="Enemy2.cpp" />
     <ClCompile Include="EntityList.cpp" />
     <ClCompile Include="Enemy1.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -166,6 +167,7 @@
   <ItemGroup>
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="Enemy2.h" />
     <ClInclude Include="EntityList.h" />
     <ClInclude Include="Enemy1.h" />
     <ClInclude Include="Entity.h" />
