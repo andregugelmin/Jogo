@@ -1,33 +1,17 @@
 #include "Enemy1.h"
+#include "LevelTest.h"
 
 Enemy1::Enemy1(sf::Vector2f pos, sf::Vector2f vel, const char* id, Player* p):
-    Collider(pos, vel, "Textures/Enemy1.png", id), player(p)
+    Enemy(pos, vel, "Textures/Enemy1.png", id, p)
 {
- 
+    initVariables();
 }
 
 
 Enemy1::~Enemy1()
 {
-    //if(projetil!=NULL) delete projetil;
 }
 
-void Enemy1::init(GraphicsManager& gm, CollisionManager& cm)
-{
-gm.loadTexture(path);
-
-dimensions = gm.getSize(path);
-
-cm.addCollider(this);
-
-initVariables();
-}
-
-void Enemy1::draw(GraphicsManager& gm)
-{
-    gm.draw(path, position);
-
-}
 
 void Enemy1::initVariables()
 {
@@ -39,35 +23,6 @@ void Enemy1::initVariables()
     velocityMin = 0.5f;
     velocityMaxY = 15.f;
 }
-
-
-void Enemy1::setTarget(Player* _player)
-{
-    player = _player;
-}
-
-void Enemy1::resetVelocityY()
-{
-    velocity.y = 0.f;
-}
-
-sf::Vector2f Enemy1::getPosition()
-{
-    return position;
-}
-
-
-//Projetil* Enemy1::getProjetil()
-//{
-//    return projetil;
-//}
-
-void Enemy1::setPosition(const float x, const float y)
-{
-    position.x = x;
-    position.y = y;
-}
-
 
 void Enemy1::move(const float x, const float y)
 {
@@ -97,16 +52,6 @@ void Enemy1::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f ot
                 
     }
 }
-
-/*
- void Enemy1::shoot(const int d)
-{
-    float posx = 0, posy = 0;
-    posx = getPosition().x;
-    posy = getPosition().y;
-    projetil = new Projetil(position, sf::Vector2f(50.f, 0.f));
-}
-*/
 
 
 void Enemy1::updatePhysics()
@@ -149,19 +94,10 @@ void Enemy1::updateMovement()
     }
 }
 
-void Enemy1::updateCollision(GraphicsManager& gm)
-{
-    
-    if (getPosition().y + getDimensions().y > gm.getWindow()->getSize().y) {
-        setPosition(getPosition().x,
-            gm.getWindow()->getSize().y - getDimensions().y);
-        resetVelocityY();
-    }
-}
-
-void Enemy1::update(GraphicsManager& gm)
+void Enemy1::update()
 {
     updateMovement();
-    updateCollision(gm);
-    //projetil->update(gm);
+    if (level != nullptr) {
+        updateCollision(level->getGraphicsManager());
+    }
 }

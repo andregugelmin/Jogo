@@ -1,5 +1,6 @@
 #include "CollisionManager.h"
 #include "Collider.h"
+#include<iostream>
 
 CollisionManager::CollisionManager()
 {
@@ -43,12 +44,15 @@ void CollisionManager::checkCollisions()
 		Collider* c1 = *paux1;
 		auto paux2 = paux1;
 		paux2++;
+		
 		for (; paux2 != colliders.end(); paux2++) {
-			Collider* c2 = *paux2;
-			if (isColliding(c1, c2)) {
-				//std::cout << c1 << " id: " << c1->getID() << "  Collided with  " << c2 << " id: " << c2->getID() << std::endl;
-				c1->collide(c2->getID(), c2->getPosition(), c2->getPosition());
-				c2->collide(c1->getID(), c1->getPosition(), c1->getPosition());
+			Collider* c2 = *paux2;			
+			if (c1 && c2) {
+				if (isColliding(c1, c2)) {
+					//std::cout << c1 << " id: " << c1->getID() << "  Collided with  " << c2 << " id: " << c2->getID() << std::endl;
+					c1->collide(c2->getID(), c2->getPosition(), c2->getPosition());
+					c2->collide(c1->getID(), c1->getPosition(), c1->getPosition());
+				}
 			}
 		}
 			

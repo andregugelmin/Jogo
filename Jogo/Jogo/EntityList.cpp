@@ -14,25 +14,30 @@ void EntityList::insert(Entity* info) {
     list.insert(info);
 }
 
+void EntityList::removeEntity(Entity* info)
+{
+    list.removeElement(info);
+}
 
-void EntityList::initEntities(GraphicsManager& gm, CollisionManager& cm)
+
+void EntityList::initEntities(LevelTest* lvl, CollisionManager& cm)
 {
     Entity* paux = list.getBegin();
 
     while (paux) {
 
-        paux->init(gm, cm);
+        paux->init(lvl, cm);
 
         paux = list.getNext();
 
     }
 }
 
-void EntityList::updateEntities(GraphicsManager& gm, CollisionManager& cm) {
+void EntityList::updateEntities(CollisionManager& cm) {
     
     Entity* paux = list.getBegin();
     while (paux) {
-        paux->update(gm);
+        paux->update();
         cm.checkCollisions();
         paux->updatePhysics();
         paux = list.getNext();
@@ -41,14 +46,14 @@ void EntityList::updateEntities(GraphicsManager& gm, CollisionManager& cm) {
 
 }
 
-void EntityList::drawEntities(GraphicsManager& gm) {
+void EntityList::drawEntities() {
 
 
     Entity* paux = list.getBegin();
 
     while (paux) {
 
-        paux->draw(gm);
+        paux->draw();
 
         paux = list.getNext();
 

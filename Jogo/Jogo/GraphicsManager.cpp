@@ -7,6 +7,8 @@ GraphicsManager::GraphicsManager() :
 {
 	window->setView(camera);
 	window->setFramerateLimit(60);
+
+	window->setKeyRepeatEnabled(false);
 }
 
 GraphicsManager::~GraphicsManager()

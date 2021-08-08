@@ -1,6 +1,7 @@
 #include "Entity.h"
+#include "LevelTest.h"
 
-Entity::Entity(sf::Vector2f pos, sf::Vector2f vel, const char* textureFile): position(pos), velocity(vel), path(textureFile)
+Entity::Entity(sf::Vector2f pos, sf::Vector2f vel, const char* textureFile): position(pos), velocity(vel), path(textureFile), level(nullptr)
 {
 }
 
@@ -8,21 +9,25 @@ Entity::~Entity()
 {
 }
 
-void Entity::init(GraphicsManager& gm, CollisionManager& cm)
+void Entity::init(LevelTest* lvl, CollisionManager& cm)
 {
-	gm.loadTexture(path);
+    if (lvl != nullptr) {
+        setLevel(lvl);
 
-	gm.getWindow()->setKeyRepeatEnabled(false);
+        level->getGraphicsManager()->loadTexture(path);
+        dimensions = level->getGraphicsManager()->getSize(path);
+    }
+
 }
 
-void Entity::update(GraphicsManager& gm)
+void Entity::updatePhysics()
 {
-	
 }
 
-void Entity::draw(GraphicsManager& gm)
+void Entity::setPosition(const float x, const float y)
 {
-	gm.draw(path, position);
+    position.x = x;
+    position.y = y;
 }
 
 const sf::Vector2f Entity::getPosition() const
@@ -33,5 +38,10 @@ const sf::Vector2f Entity::getPosition() const
 const sf::Vector2f Entity::getDimensions() const
 {
 	return dimensions;
+}
+
+void Entity::setLevel(LevelTest* lvl)
+{
+	level = lvl;
 }
 

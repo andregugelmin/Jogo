@@ -10,6 +10,7 @@ class CollisionManager
 {
 private:
 	std::set<Collider*> colliders;
+	std::set<Collider*>::iterator it;
 
 public:
 	CollisionManager();

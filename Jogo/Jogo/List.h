@@ -23,7 +23,7 @@ private:
 		Element* getPrev() const;
 		Element* getNext() const;
 
-		void setInfo(TE info);
+		void setInfo(const TE info);
 		void setPrev(Element* prev);
 		void setNext(Element* next);
 	};
@@ -37,7 +37,8 @@ public:
 	List();
 	~List();
 
-	void insert(TL info);
+	void insert(const TL info);
+	void removeElement(const TL& info);
 	void clear();
 
 	TL getBegin();
@@ -167,4 +168,29 @@ TL List<TL>::getNext()
 	current = current->getNext();
 
 	return (current) ? current->getInfo() : nullptr;
+}
+
+template<typename TL>
+void List<TL>::removeElement(const TL& elemInfo)
+{
+	Element<TL>* paux = nullptr;
+
+	if (begin != nullptr) {
+		paux = begin;
+
+		while (paux != nullptr && paux->getInfo() != elemInfo) {
+			paux = paux->getNext();
+		}
+
+		if (paux != nullptr) {
+
+			if (paux->getNext() != nullptr) paux->getNext()->setPrev(paux->getPrev());
+			else end = paux->getPrev();
+
+			if (paux->getPrev() != nullptr) paux->getPrev()->setNext(paux->getNext());
+			else begin = paux->getNext();
+
+			delete paux;
+		}
+	}
 }

@@ -1,24 +1,17 @@
 #include "Player.h"
+#include "LevelTest.h"
+#include <iostream>
 
 Player::Player(sf::Vector2f pos, const char* id):
     Collider(pos, sf::Vector2f(0.f,0.f), "Textures/Player1.png", id)
-{  
+{
+    initVariables();
 }
 
 Player::~Player()
 {
 }
 
-void Player::init(GraphicsManager& gm, CollisionManager& cm)
-{
-    gm.loadTexture(path);
-
-    dimensions = gm.getSize(path);
-
-    cm.addCollider(this);
-
-    initVariables();
-}
 
 void Player::initVariables()
 {
@@ -34,17 +27,22 @@ void Player::initVariables()
     velocity.y = 0;
 }
 
-void Player::update(GraphicsManager& gm)
+void Player::update()
 {
     updateMovement();
-    updateCollision(gm);
+    if (level != nullptr) {
+        updateCollision(level->getGraphicsManager());
+    }
 }
 
-void Player::draw(GraphicsManager& gm)
+void Player::draw()
 {
-    gm.draw(path, position);
+    if (level != nullptr) {
+        level->getGraphicsManager()->draw(path, position);
 
-    gm.center(position);
+        level->getGraphicsManager()->center(position);
+
+    }
 }
 
 void Player::move(const float x, const float y)
@@ -101,28 +99,16 @@ void Player::updateMovement()
     }    
 }
 
-void Player::updateCollision(GraphicsManager& gm)
+void Player::updateCollision(GraphicsManager* gm)
 {
-    if (getPosition().y + getDimensions().y > gm.getWindow()->getSize().y) {
-        setPosition(getPosition().x,
-            gm.getWindow()->getSize().y - getDimensions().y);
-        if(velocity.y > 0) resetVelocityY();
-        onGround = true;
-    }
-}
-
-
-
-sf::Vector2f Player::getPosition()
-{
-    return position;
-}
-
-
-void Player::setPosition(const float x, const float y)
-{
-    position.x = x;
-    position.y = y;
+    if (gm != nullptr) {
+        if (getPosition().y + getDimensions().y > gm->getWindow()->getSize().y) {
+            setPosition(getPosition().x,
+                gm->getWindow()->getSize().y - getDimensions().y);
+            if (velocity.y > 0) resetVelocityY();
+            onGround = true;
+        }
+    }    
 }
 
 
