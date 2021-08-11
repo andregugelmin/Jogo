@@ -7,7 +7,7 @@
 class Play
 {
 private:
-    enum class GameState {
+    enum class GameState {        
         LEVELTEST
     };
 
