@@ -47,7 +47,7 @@ void GraphicsManager::draw(const std::string& path, const sf::Vector2f position)
 	sprite.setOrigin(text->getSize().x * 0.5, text->getSize().x * 0.5);
 
 	sprite.setPosition(position.x, position.y);
-
+	
 	window->draw(sprite);
 }
 
@@ -87,3 +87,4 @@ const sf::Vector2f GraphicsManager::getSize(const std::string& path) const
 	sf::Vector2u dim = (textures.at(path))->getSize();
 	return sf::Vector2f(dim.x, dim.y);
 }
+

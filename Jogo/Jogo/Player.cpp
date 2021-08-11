@@ -3,7 +3,7 @@
 #include <iostream>
 
 Player::Player(sf::Vector2f pos, const char* id):
-    Collider(pos, sf::Vector2f(0.f,0.f), "Textures/Player1.png", id)
+    Character(pos, sf::Vector2f(0.f,0.f), "Textures/Player1.png", id)
 {
     initVariables();
 }
@@ -15,6 +15,7 @@ Player::~Player()
 
 void Player::initVariables()
 {
+    dir = 1;
     onGround = false;
     gravity = 1.5f;
     acceleration = 1.25f;
@@ -25,6 +26,8 @@ void Player::initVariables()
     velocityMin = 1.f;
     velocity.x = 0;
     velocity.y = 0;
+    attackCooldown = 20.f;
+    attackCooldownMax = 20.f;
 }
 
 void Player::update()
@@ -32,6 +35,21 @@ void Player::update()
     updateMovement();
     if (level != nullptr) {
         updateCollision(level->getGraphicsManager());
+    }
+
+    if (velocity.x > 0) {
+        dir = 1;
+    }
+    else if (velocity.x < 0) {
+        dir = -1;
+    }
+
+    if (attackCooldown < attackCooldownMax) {
+        attackCooldown += 0.5;
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && attackCooldown >= attackCooldownMax) {
+        shoot();
     }
 }
 
@@ -41,45 +59,13 @@ void Player::draw()
         level->getGraphicsManager()->draw(path, position);
 
         level->getGraphicsManager()->center(position);
-
     }
 }
 
-void Player::move(const float x, const float y)
-{
-    velocity.x += x;
-
-    velocity.y -= y;
-
-}
-
-void Player::resetVelocityY()
-{
-    velocity.y = 0.f;
-}
 
 void Player::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim)
 {
     
-}
-
-void Player::updatePhysics()
-{
-    velocity.y += 1.0 * gravity;
-    if (velocity.y > velocityMaxY) velocity.y = velocityMaxY;
-
-    if (abs(velocity.x) > velocityMaxX) {
-        velocity.x = velocityMaxX * ((velocity.x < 0.f) ? -1.f : 1.f);
-    }
-
-    velocity.x *= drag;
-    velocity.y *= airResistance;
-
-    if (abs(velocity.x) < velocityMin) velocity.x = 0.f;
-    if (abs(velocity.y) < velocityMin) velocity.y = 0.f;
-    
-
-    position += velocity;
 }
 
 void Player::updateMovement()
@@ -97,6 +83,7 @@ void Player::updateMovement()
             onGround = false;            
         }
     }    
+
 }
 
 void Player::updateCollision(GraphicsManager* gm)
@@ -109,6 +96,14 @@ void Player::updateCollision(GraphicsManager* gm)
             onGround = true;
         }
     }    
+}
+
+void Player::shoot()
+{
+    if (level != nullptr) {
+        level->spawnElement(new Projectile(position, "Textures/PlayerProjectile.png", "PlayerProjectile", sf::Vector2f(this->position.x + dir, this->position.y), 16, 10));        
+        attackCooldown = 0.f;
+    }
 }
 
 

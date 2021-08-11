@@ -11,6 +11,8 @@ protected:
 	sf::Vector2f velocity;
 	sf::Vector2f dimensions;
 
+	sf::Vector2f scale;
+
 	const char* path;
 
 	LevelTest* level;
@@ -30,7 +32,7 @@ public:
 	const sf::Vector2f getDimensions() const;
 
 	void setLevel(LevelTest* lvl);
-
+	void setScale(sf::Vector2f s);
 	
 };
 

@@ -1,18 +1,19 @@
 #include<math.h>
-#include "Enemy2.h"
+#include "SandSnake.h"
 #include "LevelTest.h"
+#include <iostream>
 
-Enemy2::Enemy2(sf::Vector2f pos, sf::Vector2f vel, const char* id, Player* p):
+SandSnake::SandSnake(sf::Vector2f pos, sf::Vector2f vel, const char* id, Player* p):
     Enemy(pos, vel, "Textures/Enemy2.png", id, p)
 {
     initVariables();
 }
 
-Enemy2::~Enemy2()
+SandSnake::~SandSnake()
 {
 }
 
-void Enemy2::initVariables()
+void SandSnake::initVariables()
 {
     gravity = 2.f;
     velocityMaxY = 15.f;
@@ -21,9 +22,11 @@ void Enemy2::initVariables()
     attackCooldown = 50.f;
     attackCooldownMax = 100.f;
     attackRange = 500.f;
+    numLife = 3;
+    hitCooldown = 0;
 }
 
-void Enemy2::update()
+void SandSnake::update()
 {
     if (level != nullptr) {
         updateCollision(level->getGraphicsManager());
@@ -41,34 +44,30 @@ void Enemy2::update()
 
         if(range<=attackRange)  shoot(targetPos);
     }
+
+    if (hitCooldown>0) {
+        hitCooldown--;       
+    }
 }
 
 
-void Enemy2::shoot(sf::Vector2f targetPos)
+void SandSnake::shoot(sf::Vector2f targetPos)
 {
     if (level != nullptr && attackCooldown>=attackCooldownMax) {
-        level->spawnElement(new Projectile(position, sf::Vector2f(0.f, 0.f), "Textures/Projectile.png", "bullet", targetPos));
+        level->spawnElement(new Projectile(position, "Textures/Projectile.png", "bullet", targetPos, 12.f, 100.f));
         attackCooldown = 0.f;
     }
 }
 
-void Enemy2::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim)
+void SandSnake::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim)
 {
-
-}
-
-
-void Enemy2::updatePhysics()
-{
-    velocity.y += gravity;
-    if (velocity.y > velocityMaxY) {
-        velocity.y = velocityMaxY;
+    if (otherId == "PlayerProjectile" && hitCooldown<=0) {        
+        hitCooldown = 10;
+        numLife--;
+        if (numLife <= 0) {
+            setDead();
+        }
     }
-
-    velocity.y *= airResistance;    
-
-    if (abs(velocity.y) < velocityMin) velocity.y = 0.f;
-
-    position += velocity;
 }
+
 

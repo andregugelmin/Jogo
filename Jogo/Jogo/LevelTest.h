@@ -4,8 +4,9 @@
 #include "CollisionManager.h"
 #include "EntityList.h"
 #include "Player.h"
-#include "Enemy1.h"
-#include "Enemy2.h"
+#include "Goblun.h"
+#include "SandSnake.h"
+#include "GiantBat.h"
 #include "Projectile.h"
 
 class LevelTest

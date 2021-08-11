@@ -16,9 +16,10 @@ void LevelTest::init(GraphicsManager& gm)
     graphicsManager = &gm;
     player = new Player(sf::Vector2f(100.f, 400.f),"player");
     entitiesList.insert(player);
-    entitiesList.insert(new Enemy1(sf::Vector2f(100.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy", player));
-    entitiesList.insert(new Enemy1(sf::Vector2f(400.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy", player));
-    entitiesList.insert(new Enemy2(sf::Vector2f(500.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy2", player));
+    entitiesList.insert(new Goblun(sf::Vector2f(100.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy", player));
+    entitiesList.insert(new Goblun(sf::Vector2f(400.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy", player));
+    entitiesList.insert(new SandSnake(sf::Vector2f(500.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy2", player));
+    entitiesList.insert(new GiantBat(sf::Vector2f(500.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy3", player));
 
     entitiesList.initEntities(this, collisionManager);
 }

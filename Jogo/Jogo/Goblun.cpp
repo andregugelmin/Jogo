@@ -1,19 +1,18 @@
-#include "Enemy1.h"
+#include "Goblun.h"
 #include "LevelTest.h"
 
-Enemy1::Enemy1(sf::Vector2f pos, sf::Vector2f vel, const char* id, Player* p):
+Goblun::Goblun(sf::Vector2f pos, sf::Vector2f vel, const char* id, Player* p):
     Enemy(pos, vel, "Textures/Enemy1.png", id, p)
 {
     initVariables();
 }
 
 
-Enemy1::~Enemy1()
+Goblun::~Goblun()
 {
 }
 
-
-void Enemy1::initVariables()
+void Goblun::initVariables()
 {
     acceleration = 0.75f;
     gravity = 2.f;
@@ -22,16 +21,23 @@ void Enemy1::initVariables()
     velocityMaxX = 20.f;
     velocityMin = 0.5f;
     velocityMaxY = 15.f;
+    numLife = 3;
 }
 
-void Enemy1::move(const float x, const float y)
+void Goblun::update()
 {
-    velocity.x += x;
+    updateMovement();
+    if (level != nullptr) {
+        updateCollision(level->getGraphicsManager());
+    }
 
-    velocity.y -= y;
+    if (hitCooldown > 0) {
+        hitCooldown--;
+    }
+
 }
 
-void Enemy1::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim)
+void Goblun::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim)
 {
     if (otherId == "enemy") {
         sf::Vector2f delta;
@@ -48,34 +54,20 @@ void Enemy1::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f ot
         else if((delta.x < 0.0f && nextPos.x < 0.0f)) {
             velocity.x = 0;
             position.x = otherPos.x + dimensions.x * 0.9f;
+        }                
+    }
+
+    if (otherId == "PlayerProjectile" && hitCooldown <= 0) {
+        hitCooldown = 10;
+        numLife--;
+        if (numLife <= 0) {
+            setDead();
         }
-                
     }
 }
 
 
-void Enemy1::updatePhysics()
-{
-    velocity.y += gravity;
-    if (velocity.y > velocityMaxY) {
-        velocity.y = velocityMaxY;
-    }
-
-    if (abs(velocity.x) > velocityMaxX) {
-        velocity.x = velocityMaxX * ((velocity.x < 0.f) ? -1.f : 1.f);
-    }
-
-    velocity.y *= airResistance;
-    velocity.x *= drag;
-
-
-    if (abs(velocity.x) < velocityMin) velocity.x = 0.f;
-    if (abs(velocity.y) < velocityMin) velocity.y = 0.f;
-
-    position+=velocity;
-}
-
-void Enemy1::updateMovement()
+void Goblun::updateMovement()
 {
     if (player) {
         sf::Vector2f targetPos = player->getPosition();
@@ -94,10 +86,4 @@ void Enemy1::updateMovement()
     }
 }
 
-void Enemy1::update()
-{
-    updateMovement();
-    if (level != nullptr) {
-        updateCollision(level->getGraphicsManager());
-    }
-}
+

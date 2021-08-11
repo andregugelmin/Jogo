@@ -1,19 +1,16 @@
 #pragma once
-#include "Collider.h"
+#include "Character.h"
 
 
 class Player :
-    public Collider
+    public Character
 {
 private:
-    
-    float acceleration;
-    float gravity;
-    float drag;
-    float airResistance;
-    float velocityMin;
-    float velocityMaxX;
-    float velocityMaxY;
+
+    float attackCooldown;
+    float attackCooldownMax;
+
+    int dir;
 
     bool onGround;  
 
@@ -23,17 +20,12 @@ public:
 
     void initVariables();
 
-    void update();
-    void draw();
+    void update() override;
+    void draw() override;
 
+    void collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim) override;
 
-    void move(const float x, const float y);
-    void resetVelocityY();
-
-    void collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim);
-
-    void updatePhysics();
     void updateMovement();
-    void updateCollision(GraphicsManager* gm);
-   
+    void updateCollision(GraphicsManager* gm) override;
+    void shoot();
 };

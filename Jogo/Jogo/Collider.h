@@ -13,8 +13,7 @@ public:
 
 	virtual void init(LevelTest* lvl, CollisionManager& cm);
 
-	virtual void update() = 0;
-	virtual void draw();
+	virtual void draw() override;
 
 	const char* getID() const;
 	void setId(const char* id);

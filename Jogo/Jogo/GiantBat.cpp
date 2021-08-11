@@ -1,0 +1,93 @@
+#include "GiantBat.h"
+#include "LevelTest.h"
+GiantBat::GiantBat(sf::Vector2f pos, sf::Vector2f vel, const char* id, Player* p):
+    Enemy(pos, vel, "Textures/Enemy3.png", id, p)
+{
+    initVariables();
+}
+
+GiantBat::~GiantBat()
+{
+}
+
+void GiantBat::initVariables()
+{    
+    acceleration = 1.25f;
+    drag = 0.8f;
+    velocityMaxX = 20.f;
+    velocityMin = 0.5f;
+    shoots = 0;
+    attackCooldown = 50.f;
+    attackCooldownMax = 100.f;
+    attackRange = 500.f;
+    numLife = 20;
+}
+
+void GiantBat::update()
+{
+    updateMovement();
+    if (level != nullptr) {
+        updateCollision(level->getGraphicsManager());
+    }
+
+    if (attackCooldown < attackCooldownMax) {
+        attackCooldown += 0.5;
+    }
+
+    if (player) {
+        sf::Vector2f targetPos = player->getPosition();
+        sf::Vector2f thisPos = getPosition();
+        sf::Vector2f distance = (targetPos - thisPos);
+        float range = sqrt((distance.x * distance.x) + (distance.y * distance.y));
+
+        if (range <= attackRange)  shoot(targetPos);
+    }
+    if (hitCooldown > 0) {
+        hitCooldown--;
+    }
+}
+
+
+void GiantBat::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim)
+{
+    if (otherId == "PlayerProjectile" && hitCooldown <= 0) {
+        hitCooldown = 10;
+        numLife--;
+        if (numLife <= 0) {
+            setDead();
+        }
+    }
+}
+
+void GiantBat::updateMovement()
+{
+    if (player) {
+        sf::Vector2f targetPos = player->getPosition();
+        sf::Vector2f thisPos = getPosition();
+
+        if ((targetPos.x - thisPos.x) > 100.f) {
+            move(acceleration, 0);
+
+        }
+        else if ((targetPos.x - thisPos.x) < -100.f) {
+            move(-acceleration, 0);
+        }
+        
+    }
+}
+
+void GiantBat::shoot(sf::Vector2f targetPos)
+{
+    if (level != nullptr && attackCooldown >= attackCooldownMax) {
+        level->spawnElement(new Projectile(position, "Textures/Projectile.png", "bullet", targetPos, 12.f, 100.f));
+        attackCooldown = 0.f;
+        shoots++;
+        if (shoots < 3) {
+            attackCooldownMax = 5.f;
+        }
+        else {
+            shoots = 0;;
+            attackCooldownMax = 100.f;
+        }
+    }
+}

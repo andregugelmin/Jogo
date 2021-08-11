@@ -3,7 +3,8 @@
 #include "LevelTest.h"
 #include<iostream>
 
-Projectile::Projectile(sf::Vector2f pos, sf::Vector2f vel, const char* textureFile, const char* id, sf::Vector2f targetPos) : Collider(pos, vel, "Textures/Projectile.png", id), speed(3.f)
+Projectile::Projectile(sf::Vector2f pos, const char* textureFile, const char* id, sf::Vector2f targetPos, float spd, float ltime) :
+    Collider(pos, sf::Vector2f(0.f, 0.f), textureFile, id), speed(spd), lifeTime(ltime)
 {
     velocity = setDirection(targetPos);
 }
@@ -14,6 +15,10 @@ Projectile::~Projectile()
 
 void Projectile::update()
 {
+    lifeTime -= 1.f;
+    if (level && lifeTime <= 0.f ) {
+        level->destroyElement(this);
+    }
 }
 
 void Projectile::updatePhysics()
@@ -24,7 +29,10 @@ void Projectile::updatePhysics()
 void Projectile::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim)
 {
     if (level != nullptr) {
-        if (otherId == "player") {
+        if (this->ID == "bullet" && otherId == "player") {
+            level->destroyElement(this);
+        }
+        else if (this->ID == "PlayerProjectile" && (otherId == "enemy" || otherId == "enemy2" || otherId == "enemy3")) {
             level->destroyElement(this);
         }
     }
