@@ -28,11 +28,17 @@ public:
     ~Obstacle();
 
     void update();
+    void drawObs();
 
     void init(LevelTest* lvl, CollisionManager& cm);
 
     void collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim);
     void Collision(int dir);
+};
+
+class Obstacle :
+    public Collider
+{
 };
 
 //class Map1: public Obstacle

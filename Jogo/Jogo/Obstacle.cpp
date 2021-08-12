@@ -11,6 +11,14 @@ Obstacle::~Obstacle()
 
 void Obstacle::update()
 {
+	
+}
+
+void Obstacle::drawObs()
+{
+	for (auto itr = lvl.begin(); itr != lvl.end(); itr++) {
+		window.draw(*itr->second.sprite);
+	}
 }
 
 void Obstacle::init(LevelTest* lvl, CollisionManager& cm)
