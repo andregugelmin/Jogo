@@ -19,7 +19,7 @@ void Player::initVariables()
 {
     dir = 1;
     onGround = false;
-    gravity = 1.5f;
+    gravity = 1.2f;
     acceleration = 1.25f;
     drag = 0.9f;
     airResistance = 0.98f;
@@ -34,11 +34,24 @@ void Player::initVariables()
 
 void Player::update()
 {
-    updateMovement();
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+        move(acceleration, 0);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+        move(-acceleration, 0);
+    }
+    if (onGround) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+            move(0.f, 15.f);
+            onGround = false;
+        }
+    }
+
+    velocity.y += gravity;
+
     if (level != nullptr) {
         updateCollision(level->getGraphicsManager());
     }
-
     if (velocity.x > 0) {
         dir = 1;
     }
@@ -67,26 +80,31 @@ void Player::draw()
 
 void Player::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim)
 {
-    
-}
+    if (otherId == "tile") {        
 
-void Player::updateMovement()
-{       
-    
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        move(acceleration, 0);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        move(-acceleration, 0);
-    }
-    if (onGround) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            move(0.f, 15.f);
-            onGround = false;            
+        sf::Vector2f delta;
+
+        delta = otherPos - position;        
+        if (position.y + dimensions.y / 2 > otherPos.y + otherDim.y/2) {
+            position.y = otherPos.y;
+            onGround = true;
+            if (velocity.y > 0) resetVelocityY();
+        }           
+        
+
+        /*
+        if ((delta.x > 0.0f && nextPos.x > 0.0f)) {
+            velocity.x = 0;
+            position.x = otherPos.x - dimensions.x;
         }
-    }    
-
+        else if ((delta.x < 0.0f && nextPos.x < 0.0f)) {
+            velocity.x = 0;
+            position.x = otherPos.x + dimensions.x;
+        }
+        */
+    }
 }
+
 
 void Player::updateCollision(GraphicsManager* gm)
 {
@@ -96,25 +114,7 @@ void Player::updateCollision(GraphicsManager* gm)
                 gm->getWindow()->getSize().y - getDimensions().y);
             if (velocity.y > 0) resetVelocityY();
             onGround = true;
-        }
-
-        //for (int i = rect.top / 32; i < (rect.top + rect.height) / 32; i++) //colidindo com o cenario
-        //    for (int j = rect.left / 32; j < (rect.left + rect.width) / 32; j++)
-        //    {
-        //        if (TileMap[i][j] == 'B')
-        //        {
-        //            if ((dx > 0) && (dir == 0)) rect.left = j * 32 - rect.width;
-        //            if ((dx < 0) && (dir == 0)) rect.left = j * 32 + 32;
-        //            if ((dy > 0) && (dir == 1)) { rect.top = i * 32 - rect.height;  dy = 0;   onGround = true; }
-        //            if ((dy < 0) && (dir == 1)) { rect.top = i * 32 + 32;   dy = 0; }
-        //        }
-
-        //        if (TileMap[i][j] == '0')
-        //        {
-        //            TileMap[i][j] = ' ';
-        //        }
-
-        //    }
+        }             
     }    
 }
 

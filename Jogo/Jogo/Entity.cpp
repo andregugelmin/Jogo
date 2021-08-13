@@ -30,6 +30,12 @@ void Entity::setPosition(const float x, const float y)
     position.y = y;
 }
 
+void Entity::setVelocity(const float x, const float y)
+{
+    velocity.x = x;
+    velocity.y = y;
+}
+
 const sf::Vector2f Entity::getPosition() const
 {
 	return position;
@@ -38,6 +44,11 @@ const sf::Vector2f Entity::getPosition() const
 const sf::Vector2f Entity::getDimensions() const
 {
 	return dimensions;
+}
+
+const sf::Vector2f Entity::getVelocity() const
+{
+    return velocity;
 }
 
 void Entity::setLevel(LevelTest* lvl)

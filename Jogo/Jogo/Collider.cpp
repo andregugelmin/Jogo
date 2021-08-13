@@ -19,7 +19,7 @@ void Collider::init(LevelTest* lvl, CollisionManager& cm)
 		dimensions = level->getGraphicsManager()->getSize(path);
 	}
 
-	cm.addCollider(this);
+	if(ID!="tile") cm.addCollider(this);
 }
 
 const char* Collider::getID() const

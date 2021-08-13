@@ -27,9 +27,11 @@ public:
 	virtual void draw() = 0;
 
 	void setPosition(const float x, const float y);
-	
+	void setVelocity(const float x, const float y);
+
 	const sf::Vector2f getPosition() const;
 	const sf::Vector2f getDimensions() const;
+	const sf::Vector2f getVelocity() const;
 
 	void setLevel(LevelTest* lvl);
 	void setScale(sf::Vector2f s);

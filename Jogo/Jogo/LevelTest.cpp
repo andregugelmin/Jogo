@@ -14,12 +14,26 @@ LevelTest::~LevelTest()
 void LevelTest::init(GraphicsManager& gm)
 {
     graphicsManager = &gm;
-    player = new Player(sf::Vector2f(100.f, 400.f),"player");
+    player = new Player(sf::Vector2f(200.f, 0.f),"player");
     entitiesList.insert(player);
-    entitiesList.insert(new Goblun(sf::Vector2f(100.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy", player));
-    entitiesList.insert(new Goblun(sf::Vector2f(400.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy", player));
-    entitiesList.insert(new SandSnake(sf::Vector2f(500.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy2", player));
-    entitiesList.insert(new GiantBat(sf::Vector2f(500.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy3", player));
+    //entitiesList.insert(new Goblun(sf::Vector2f(100.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy", player));
+    //entitiesList.insert(new Goblun(sf::Vector2f(400.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy", player));
+    //entitiesList.insert(new SandSnake(sf::Vector2f(500.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy2", player));
+    //entitiesList.insert(new GiantBat(sf::Vector2f(500.f, 400.f), sf::Vector2f(0.f, 0.f), "enemy3", player));    
+
+    for (int i = 0; i < H; i++)
+        for (int j = 0; j < W; j++)
+        {
+            if (Level01[i][j] == 'B') entitiesList.insert(new Obstacle(sf::Vector2f(j * 32 + 16, i * 32 + 16), sf::Vector2f(0.f, 0.f),"Textures/Tiles2/1.png", "tile")); //mapeia os pixels da imagem (posx, posy, tamanhoimagem em x, tamanhoimagem em y)
+
+            if (Level01[i][j] == 'C') entitiesList.insert(new Obstacle(sf::Vector2f(j * 32 + 16, i * 32 + 16), sf::Vector2f(0.f, 0.f), "Textures/Tiles2/4.png", "tile"));
+
+            if (Level01[i][j] == 'D') entitiesList.insert(new Obstacle(sf::Vector2f(j * 32 + 16, i * 32 + 16), sf::Vector2f(0.f, 0.f), "Textures/Tiles2/2.png", "tile"));
+
+            if (Level01[i][j] == '0') entitiesList.insert(new Obstacle(sf::Vector2f(j * 32 + 16, i * 32 + 16), sf::Vector2f(0.f, 0.f), "Textures/Tiles2/3.png", "tile"));
+
+            if (Level01[i][j] == ' ') continue;
+        }
 
     entitiesList.initEntities(this, collisionManager);
 }

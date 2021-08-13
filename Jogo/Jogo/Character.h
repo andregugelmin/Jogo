@@ -18,6 +18,8 @@ protected:
     bool takeHit;
     float hitCooldown;
 
+    bool onGround;
+
 public:
     Character(sf::Vector2f pos = sf::Vector2f(0.f, 0.f), sf::Vector2f vel = sf::Vector2f(0.f, 0.f), const char* textureFile = nullptr, const char* id = nullptr);
     virtual ~Character();
