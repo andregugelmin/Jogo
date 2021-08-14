@@ -8,7 +8,10 @@ class Play
 {
 private:
     enum class GameState {        
-        LEVELTEST
+       MENU,
+       LEVEL01,
+       PAUSE,
+       LEVELTEST
     };
 
     GraphicsManager graphicsManager;

@@ -10,7 +10,7 @@ protected:
     Player* player;
 
 public:
-    Enemy(sf::Vector2f pos = sf::Vector2f(0.f, 0.f), sf::Vector2f vel = sf::Vector2f(0.f, 0.f), const char* textureFile = nullptr, const char* id = nullptr, Player* p = nullptr);
+    Enemy(sf::Vector2f pos = sf::Vector2f(0.f, 0.f), const char* textureFile = nullptr, const char* id = nullptr, Player* p = nullptr);
     virtual ~Enemy();
 
     void setTarget(Player* _player);

@@ -20,25 +20,26 @@ private:
 	GraphicsManager* graphicsManager;
 	CollisionManager collisionManager;
 	EntityList entitiesList;
+    EntityList tilesList;
 	std::set<Collider*> deleteColliders;
 
 	Player* player;
 
 	char Level01[H][W]= {
-    "B                                                                                                                                                                              B",
-    "B                                                                                       00000000000   000       00000                                                          B",
-    "B                                                                                                                                                                              B",
-    "B                                                                                                                                                                              B",
-    "B                                                                                                                                                                              B",
-    "B                                                                                   BBBBB    BBB   BBBBB    BBBBBBBB                                                           B",
-    "B                                                                             BBBB                                                                                             B",
-    "B                                                                                                                                                                              B",
-    "B                                                                   BBBBBB                                                                                                     B",
-    "B     0                          BB                                                                                                                                            B",
-    "B                              BBBBBB          BBBB    BBB   BBB                                                                                                               B",
-    "B                            BBBBBBBBBB                                                                                                                                        B",
-    "B            BB            BBBBBBBBBBBBBB                                                                                                                                      B",
-    "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC                     BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "C                                                                                                                                                                              C",
+    "C                                                                                                                                                                              C",
+    "C                                                                                                                                                                              C",
+    "C                                                                                                                                                                              C",
+    "C                                                                                                                                                                              C",
+    "C                                                                                   BBBBB    BBB   BBBBB    BBBBBBBB                                                           C",
+    "C                                                                             BBBB                                                                                             C",
+    "C                                                                                                                                                                              C",
+    "C                                                                   BBBBBB                                                                                           0         C",
+    "C                                BB                                                                                                                                            C",
+    "C                              BBCCBB          BBBB    BBB   BBB                                                                                                               C",
+    "C                            BBCCCCCCBB                                                                                                                                        C",
+    "C            BB            BBCCCCCCCCCCBB                                                                                                                                      C",
+    "CBBBBBBBBBBBBCCBBBBBBBBBBBBCCCCCCCCCCCCCCBBBBB                     BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBC",
     "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC                     CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
     "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC                     CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
     "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",

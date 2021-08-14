@@ -2,7 +2,7 @@
 #include "LevelTest.h"
 #include <iostream>
 
-Collider::Collider(sf::Vector2f pos, sf::Vector2f vel, const char* textureFile, const char* id): Entity(pos, vel, textureFile), ID(id)
+Collider::Collider(sf::Vector2f pos, const char* textureFile, const char* id): Entity(pos, textureFile), ID(id)
 {
 }
 
@@ -42,7 +42,6 @@ void Collider::draw()
 
 void Collider::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim)
 {
-	std::cout << ID << "is colliding with " << otherId << std::endl;
 }
 
 

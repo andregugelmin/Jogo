@@ -1,7 +1,7 @@
 #include "Entity.h"
 #include "LevelTest.h"
 
-Entity::Entity(sf::Vector2f pos, sf::Vector2f vel, const char* textureFile): position(pos), velocity(vel), scale(sf::Vector2f(1.0f, 1.0f)), path(textureFile), level(nullptr)
+Entity::Entity(sf::Vector2f pos, const char* textureFile): position(pos), velocity(sf::Vector2f(0.0f, 0.0f)), scale(sf::Vector2f(1.0f, 1.0f)), path(textureFile), level(nullptr)
 {
 }
 

@@ -1,7 +1,7 @@
 #include "GiantBat.h"
 #include "LevelTest.h"
-GiantBat::GiantBat(sf::Vector2f pos, sf::Vector2f vel, const char* id, Player* p):
-    Enemy(pos, vel, "Textures/Enemy3.png", id, p)
+GiantBat::GiantBat(sf::Vector2f pos,  const char* id, Player* p):
+    Enemy(pos, "Textures/Enemy3.png", id, p)
 {
     initVariables();
 }
@@ -25,7 +25,7 @@ void GiantBat::initVariables()
 
 void GiantBat::update()
 {
-    updateMovement();
+    
     if (level != nullptr) {
         updateCollision(level->getGraphicsManager());
     }
@@ -41,6 +41,8 @@ void GiantBat::update()
         float range = sqrt((distance.x * distance.x) + (distance.y * distance.y));
 
         if (range <= attackRange)  shoot(targetPos);
+
+        followPlayer(range);
     }
     if (hitCooldown > 0) {
         hitCooldown--;
@@ -59,27 +61,22 @@ void GiantBat::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f 
     }
 }
 
-void GiantBat::updateMovement()
+void GiantBat::followPlayer(float range)
 {
-    if (player) {
-        sf::Vector2f targetPos = player->getPosition();
-        sf::Vector2f thisPos = getPosition();
+    sf::Vector2f targetPos = player->getPosition();
+    sf::Vector2f thisPos = getPosition();
 
-        if ((targetPos.x - thisPos.x) > 100.f) {
-            move(acceleration, 0);
+    if (range > 400.f && range < 600) {
+        if(targetPos.x - thisPos.x > 0) move(acceleration, 0);
 
-        }
-        else if ((targetPos.x - thisPos.x) < -100.f) {
-            move(-acceleration, 0);
-        }
-        
+        else if(targetPos.x - thisPos.x < 0) move(-acceleration, 0);
     }
 }
 
 void GiantBat::shoot(sf::Vector2f targetPos)
 {
     if (level != nullptr && attackCooldown >= attackCooldownMax) {
-        level->spawnElement(new Projectile(position, "Textures/Projectile.png", "bullet", targetPos, 12.f, 100.f));
+        level->spawnElement(new Projectile(position, "Textures/Projectile.png", "bullet", targetPos, 8.f, 150.f));
         attackCooldown = 0.f;
         shoots++;
         if (shoots < 3) {

@@ -4,7 +4,7 @@
 #include<iostream>
 
 Projectile::Projectile(sf::Vector2f pos, const char* textureFile, const char* id, sf::Vector2f targetPos, float spd, float ltime) :
-    Collider(pos, sf::Vector2f(0.f, 0.f), textureFile, id), speed(spd), lifeTime(ltime)
+    Collider(pos, textureFile, id), speed(spd), lifeTime(ltime)
 {
     velocity = setDirection(targetPos);
 }
@@ -34,6 +34,7 @@ void Projectile::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2
         }
         else if (this->ID == "PlayerProjectile" && (otherId == "enemy" || otherId == "enemy2" || otherId == "enemy3")) {
             level->destroyElement(this);
+
         }
     }
 }

@@ -18,7 +18,7 @@ protected:
 	LevelTest* level;
 
 public:
-	Entity(sf::Vector2f pos = sf::Vector2f(0.f,0.f), sf::Vector2f vel = sf::Vector2f(0.f, 0.f), const char* textureFile = nullptr);
+	Entity(sf::Vector2f pos = sf::Vector2f(0.f,0.f), const char* textureFile = nullptr);
 	virtual ~Entity();
 
 	virtual void init(LevelTest* lvl, CollisionManager& cm);

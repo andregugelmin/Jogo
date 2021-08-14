@@ -7,7 +7,7 @@ protected:
 	const char* ID;
 
 public:
-	Collider(sf::Vector2f pos = sf::Vector2f(0.f, 0.f), sf::Vector2f vel = sf::Vector2f(0.f, 0.f), const char* textureFile = nullptr, const char* id = nullptr);
+	Collider(sf::Vector2f pos = sf::Vector2f(0.f, 0.f), const char* textureFile = nullptr, const char* id = nullptr);
 	virtual ~Collider();
 
 

@@ -1,8 +1,9 @@
 #include "Character.h"
 #include "LevelTest.h"
 #include <iostream>
-Character::Character(sf::Vector2f pos, sf::Vector2f vel, const char* textureFile, const char* id):
-	Collider(pos, vel, textureFile, id), gravity(0), drag(0), airResistance(0), velocityMaxY(0), velocityMin(0), acceleration(0), velocityMaxX(0), numLife(0), takeHit(false)
+Character::Character(sf::Vector2f pos, const char* textureFile, const char* id):
+	Collider(pos, textureFile, id), gravity(0), drag(0), airResistance(0), velocityMaxY(0), velocityMin(0), acceleration(0),
+    velocityMaxX(0), numLife(0), takeHit(false), onGround(false)
 {
 }
 
@@ -32,7 +33,6 @@ void Character::updatePhysics()
     if (abs(velocity.x) < velocityMin) velocity.x = 0.f;
     if (abs(velocity.y) < velocityMin) velocity.y = 0.f;
 
-    std::cout << velocity.y << std::endl;
 
     position += velocity;
 }

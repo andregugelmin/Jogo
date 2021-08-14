@@ -12,7 +12,7 @@ private:
     float attackRange;
 
 public:
-    SandSnake(sf::Vector2f pos = sf::Vector2f(0.f, 0.f), sf::Vector2f vel = sf::Vector2f(0.f, 0.f), const char* id = nullptr, Player* p = nullptr);
+    SandSnake(sf::Vector2f pos = sf::Vector2f(0.f, 0.f), const char* id = nullptr, Player* p = nullptr);
     ~SandSnake();
 
     void update() override;

@@ -3,8 +3,8 @@
 #include "LevelTest.h"
 #include <iostream>
 
-SandSnake::SandSnake(sf::Vector2f pos, sf::Vector2f vel, const char* id, Player* p):
-    Enemy(pos, vel, "Textures/Enemy2.png", id, p)
+SandSnake::SandSnake(sf::Vector2f pos, const char* id, Player* p):
+    Enemy(pos, "Textures/Enemy2.png", id, p)
 {
     initVariables();
 }
@@ -48,13 +48,15 @@ void SandSnake::update()
     if (hitCooldown>0) {
         hitCooldown--;       
     }
+
+    velocity.y += gravity;
 }
 
 
 void SandSnake::shoot(sf::Vector2f targetPos)
 {
     if (level != nullptr && attackCooldown>=attackCooldownMax) {
-        level->spawnElement(new Projectile(position, "Textures/Projectile.png", "bullet", targetPos, 12.f, 100.f));
+        level->spawnElement(new Projectile(position, "Textures/Projectile.png", "bullet", targetPos, 6.f, 150.f));
         attackCooldown = 0.f;
     }
 }
@@ -66,6 +68,48 @@ void SandSnake::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f
         numLife--;
         if (numLife <= 0) {
             setDead();
+        }
+    }
+
+    if (otherId == "tile") {
+
+        float deltax = otherPos.x - position.x;
+        float deltay = otherPos.y - position.y;
+        float intersectx = abs(deltax) - (otherDim.x / 2 + dimensions.x / 2);
+        float intersecty = abs(deltay) - (otherDim.y / 2 + dimensions.y / 2);
+
+        if (intersectx <= 0.0f && intersecty <= 0.0f) {
+            if (intersectx > intersecty) {
+                if (deltax > 0.0f) {
+                    position.x = otherPos.x - (otherDim.x / 2) - (dimensions.x / 2);
+                    if (velocity.x > 0) {
+                        velocity.x = 0;
+                    }
+                }
+                else {
+                    position.x = otherPos.x + (otherDim.x / 2) + (dimensions.x / 2);
+                    if (velocity.x < 0) {
+                        velocity.x = 0;
+                    }
+                }
+
+            }
+            else {
+                if (deltay > 0.0f) {
+                    position.y = otherPos.y - (otherDim.y / 2) - (dimensions.y / 2);
+                    if (velocity.y > 0) {
+                        onGround = true;
+                        velocity.y = 0;
+                    }
+
+                }
+                else {
+                    position.y = otherPos.y + (otherDim.y / 2) + (dimensions.y / 2);
+                    if (velocity.y < 0) {
+                        velocity.y = 0;
+                    }
+                }
+            }
         }
     }
 }
