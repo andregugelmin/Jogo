@@ -1,12 +1,12 @@
 #include "Play.h"
 #include<iostream>
 
-Play::Play(): graphicsManager(), levelTest(), current(GameState::LEVELTEST)
+Play::Play(): graphicsManager(), levelTest()
 {
     player = new Player(sf::Vector2f(200.f, 0.f), "player");
     levelTest.setPlayer(player);
     levelTest.init(graphicsManager);
-    play();
+    run();
 }
 
 Play::~Play()
@@ -15,14 +15,10 @@ Play::~Play()
 }
 
 
-void Play::play()
+void Play::run()
 {
-    switch (current) {
-    case GameState::LEVELTEST:
-        
         levelTest.execute();
-        break;
-    }
+    
 }
 
 void Play::goToLevel(LevelTest* level)

@@ -22,16 +22,10 @@ namespace Nightmare
 	void GameState::Init()
 	{
 
-
-		/*this->_data->assets.LoadTexture("Game Background", GAME_BACKGROUND_FILEPATH);
-		this->_data->assets.LoadTexture("car", CAR_FILEPATH);
-
-		_background.setTexture(this->_data->assets.GetTexture("Game Background"));
-		_car.setTexture(this->_data->assets.GetTexture("car"));
-		_car.setTextureRect(IntRect(160, 0, 32, 32));
-		_car.setPosition(430, 20);
-		_car.scale(2, 2);*/
-		Play game;
+		player = new Player(sf::Vector2f(200.f, 0.f), "player");
+		levelTest.setPlayer(player);
+		levelTest.init(graphicsManager);
+		run();
 
 		_gameState = GameStates::eReady;
 
@@ -64,66 +58,6 @@ namespace Nightmare
 
 		}
 
-		if (Keyboard::isKeyPressed(Keyboard::Left))
-		{
-			_car.move(-2, 0);
-
-			currentFrame = 1;
-			if (currentFrame > 6) currentFrame -= 6;
-
-			_car.setTextureRect(IntRect(32 * int(currentFrame), 0, 32, 32));
-
-		}
-
-		if (Keyboard::isKeyPressed(Keyboard::Right))
-		{
-			_car.move(2, 0);
-			currentFrame = 1;
-			if (currentFrame > 6) currentFrame -= 6;
-
-			_car.setTextureRect(IntRect(160 * int(currentFrame), 0, 32, 32));
-		}
-
-		if (Keyboard::isKeyPressed(Keyboard::Up))
-		{
-			_car.move(0, -2);
-			currentFrame = 1;
-			if (currentFrame > 6) currentFrame -= 6;
-			_car.setTextureRect(IntRect(96 * int(currentFrame), 0, 32, 32));
-		}
-
-		if (Keyboard::isKeyPressed(Keyboard::Down))
-		{
-			_car.move(0, 2);
-			currentFrame = 1;
-			if (currentFrame > 6) currentFrame -= 6;
-			_car.setTextureRect(IntRect(224 * int(currentFrame), 0, 32, 32));
-		}
-
-		if (Keyboard::isKeyPressed(Keyboard::Down)) {
-			if (Keyboard::isKeyPressed(Keyboard::Right))
-				_car.setTextureRect(IntRect(192 * int(currentFrame), 0, 32, 32));
-		}
-
-		if (Keyboard::isKeyPressed(Keyboard::Down)) {
-			if (Keyboard::isKeyPressed(Keyboard::Left))
-				_car.setTextureRect(IntRect(0 * int(currentFrame), 0, 32, 32));
-		}
-
-		if (Keyboard::isKeyPressed(Keyboard::Up)) {
-			if (Keyboard::isKeyPressed(Keyboard::Left))
-				_car.setTextureRect(IntRect(64 * int(currentFrame), 0, 32, 32));
-		}
-
-		if (Keyboard::isKeyPressed(Keyboard::Up)) {
-			if (Keyboard::isKeyPressed(Keyboard::Right))
-				_car.setTextureRect(IntRect(128 * int(currentFrame), 0, 32, 32));
-		}
-
-		if (Keyboard::isKeyPressed(Keyboard::Space))
-		{
-			sound.play();
-		}
 	}
 
 	void GameState::Update(float dt)
@@ -156,5 +90,9 @@ namespace Nightmare
 	{
 		this->_data->window.clear(sf::Color::White);
 
+	}
+	void GameState::run()
+	{
+		levelTest.execute();
 	}
 }

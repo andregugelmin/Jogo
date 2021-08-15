@@ -4,6 +4,10 @@
 #include "State.h"
 #include "Game.h"
 #include "MainMenuState.h"
+#include "LevelTest.h"
+#include "GraphicsManager.h"
+#include "CollisionManager.h"
+#include "Player.h"
 
 namespace Nightmare
 {
@@ -32,9 +36,14 @@ namespace Nightmare
 
 		sf::Clock clock;
 
-		sf::SoundBuffer soundbuffer;
-		sf::Sound sound;
-		sf::Music music;
+		GraphicsManager graphicsManager;
+
+		LevelTest levelTest;
+
+		Player* player;
+
+		void run();
+
 
 	};
 }

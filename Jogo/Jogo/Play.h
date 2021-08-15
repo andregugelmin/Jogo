@@ -18,11 +18,9 @@ private:
 
     LevelTest levelTest;
 
-    GameState current;
-
     Player* player;
 
-    void play();
+    void run();
 
     void goToLevel(LevelTest* level);
 
