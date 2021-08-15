@@ -3,7 +3,7 @@
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 768
 
-#define SPLASH_STATE_SHOW_TIME 3.0
+#define SPLASH_STATE_SHOW_TIME 1.0
 
 #define SPLASH_SCENE_BACKGROUND_FILEPATH "Textures/splashBackground.png"
 #define MAIN_MENU_BACKGROUND_FILEPATH "Textures/sky.png"

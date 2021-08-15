@@ -22,9 +22,19 @@ void LevelManager::init(GraphicsManager& gm)
     for (int i = 0; i < H; i++)
         for (int j = 0; j < W; j++)
         {
-            if (Level01[i][j] == 'B') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32 ), "Textures/Tiles2/1.png", "tile")); 
+            if (Level01[i][j] == 'B') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32 ), "Textures/Tiles2/2.png", "tile")); 
 
             if (Level01[i][j] == 'C') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32 ), "Textures/Tiles2/4.png", "tile"));
+
+            if (Level01[i][j] == 'G') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/G.png", "tile"));
+
+            if (Level01[i][j] == 'H') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/H.png", "tile"));
+
+            if (Level01[i][j] == 'I') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/I.png", "tile"));
+
+            if (Level01[i][j] == 'K') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/K.png", "tile"));
+
+            if (Level01[i][j] == 'J') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/J.png", "tile"));
 
             if (Level01[i][j] == 'D') tilesList.insert(new Obstacle(sf::Vector2f(j * 32 , i * 32 ), "Textures/Tiles2/2.png", "tile"));
 
