@@ -1,14 +1,9 @@
 #include "GraphicsManager.h"
 #include <iostream>
 
-GraphicsManager::GraphicsManager() :
-	window(new sf::RenderWindow(sf::VideoMode(1024, 768), "Game", sf::Style::Close | sf::Style::Resize)),
-	camera(sf::Vector2f(800, 600), sf::Vector2f(800, 600))
+GraphicsManager::GraphicsManager() : window()	
 {
-	window->setView(camera);
-	window->setFramerateLimit(60);
 
-	window->setKeyRepeatEnabled(false);
 }
 
 GraphicsManager::~GraphicsManager()
@@ -105,6 +100,14 @@ sf::Font& GraphicsManager::GetFont(std::string name)
 sf::RenderWindow* GraphicsManager::getWindow() const
 {
 	return window;
+}
+
+void GraphicsManager::setWindow(sf::RenderWindow* w)
+{
+	window = w;
+	window->setFramerateLimit(60);
+
+	window->setKeyRepeatEnabled(false);
 }
 
 const sf::Vector2f GraphicsManager::getSize(const std::string& path) const

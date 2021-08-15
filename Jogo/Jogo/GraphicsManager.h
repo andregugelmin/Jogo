@@ -10,7 +10,6 @@ class GraphicsManager
 {
 private:
 	sf::RenderWindow* window;
-	sf::View camera;
 	std::map<const std::string, sf::Texture*> textures;
 
 	std::map<std::string, sf::Texture> _textures;
@@ -34,7 +33,7 @@ public:
 	sf::Font& GetFont(std::string name);
 
 	sf::RenderWindow* getWindow() const;
-
+	void setWindow(sf::RenderWindow* w);
 	const sf::Vector2f getSize(const std::string& path) const;
 };
 

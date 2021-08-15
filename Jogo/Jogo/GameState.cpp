@@ -22,7 +22,7 @@ namespace Nightmare
 
 		player = new Player(sf::Vector2f(200.f, 0.f), "player");
 		levelManager.setPlayer(player);
-		levelManager.init(graphicsManager);
+		levelManager.init(_data->assets);
 		run();
 
 		_gameState = GameStates::eReady;

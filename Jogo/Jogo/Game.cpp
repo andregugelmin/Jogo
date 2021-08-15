@@ -7,10 +7,10 @@ namespace Nightmare
 	{
 		_data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
 		_data->machine.AddState(StateRef(new SplashState(this->_data)));
-
+		
 		icon.loadFromFile("Textures/Player1.png");
 		_data->window.setIcon(30, 20, icon.getPixelsPtr());
-
+		_data->assets.setWindow(&_data->window);
 		this->Run();
 	}
 
