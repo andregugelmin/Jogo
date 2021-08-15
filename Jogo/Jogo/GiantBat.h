@@ -1,25 +1,28 @@
 #pragma once
 #include "Enemy.h"
 
-class GiantBat: public Enemy
-{
-private:
-    float attackCooldown;
-    float attackCooldownMax;
-    float attackRange;
-    int shoots;
-public:
-    GiantBat(sf::Vector2f pos = sf::Vector2f(0.f, 0.f), const char* id = nullptr, Player* p = nullptr);
-    ~GiantBat();
+namespace Nightmare {
 
-    void update() override;
+    class GiantBat : public Enemy
+    {
+    private:
+        float attackCooldown;
+        float attackCooldownMax;
+        float attackRange;
+        int shoots;
+    public:
+        GiantBat(sf::Vector2f pos = sf::Vector2f(0.f, 0.f), const char* id = nullptr, Player* p = nullptr);
+        ~GiantBat();
 
-    void initVariables();
+        void update() override;
 
-    void collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim) override;
+        void initVariables();
 
-    void followPlayer(float range);
+        void collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim) override;
 
-    void shoot(sf::Vector2f targetPos);
+        void followPlayer(float range);
+
+        void shoot(sf::Vector2f targetPos);
+    };
 };
 

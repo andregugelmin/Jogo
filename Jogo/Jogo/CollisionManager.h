@@ -4,29 +4,30 @@
 #include<math.h>
 #include"SFML/Graphics.hpp"
 
-class Collider;
+namespace Nightmare {
+	class Collider;
 
 #define H 17
 #define W 177
 
-class CollisionManager
-{
-private:
-	std::set<Collider*> colliders;
-    char tileMap[H][W];
-   
-public:
-	CollisionManager();
-	~CollisionManager();
+	class CollisionManager
+	{
+	private:
+		std::set<Collider*> colliders;
+		char tileMap[H][W];
 
-	void addCollider(Collider* c);
-	void removeCollider(Collider* c);
-	void removeAllColliders();
+	public:
+		CollisionManager();
+		~CollisionManager();
 
-	bool isColliding(Collider* c1, Collider* c2);
-	void checkCollisions();
-	void checkMapCollision(Collider* c);
+		void addCollider(Collider* c);
+		void removeCollider(Collider* c);
+		void removeAllColliders();
 
-    void setTileMapCollisions(char tm[][W], int h, int w);
+		bool isColliding(Collider* c1, Collider* c2);
+		void checkCollisions();
+		void checkMapCollision(Collider* c);
+
+		void setTileMapCollisions(char tm[][W], int h, int w);
+	};
 };
-
