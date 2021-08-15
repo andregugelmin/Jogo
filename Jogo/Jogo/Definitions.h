@@ -5,7 +5,7 @@
 
 #define SPLASH_STATE_SHOW_TIME 1.0
 
-#define HEIGHT 24
+#define HEIGHT 36
 #define WIDTH 177
 
 #define SPLASH_SCENE_BACKGROUND_FILEPATH "Textures/splashBackground.png"
