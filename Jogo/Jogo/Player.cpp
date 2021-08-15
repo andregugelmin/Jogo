@@ -49,9 +49,6 @@ void Player::update()
 
     velocity.y += gravity;
 
-    if (level != nullptr) {
-        updateCollision(level->getGraphicsManager());
-    }
     if (velocity.x > 0) {
         dir = 1;
     }
@@ -123,18 +120,6 @@ void Player::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f ot
     }
 }
 
-
-void Player::updateCollision(GraphicsManager* gm)
-{
-    if (gm != nullptr) {
-        if (getPosition().y + getDimensions().y > gm->getWindow()->getSize().y) {
-            setPosition(getPosition().x,
-                gm->getWindow()->getSize().y - getDimensions().y);
-            if (velocity.y > 0) resetVelocityY();
-            onGround = true;
-        }             
-    }    
-}
 
 void Player::shoot()
 {

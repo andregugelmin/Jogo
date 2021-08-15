@@ -25,10 +25,7 @@ void GiantBat::initVariables()
 
 void GiantBat::update()
 {
-    
-    if (level != nullptr) {
-        updateCollision(level->getGraphicsManager());
-    }
+   
 
     if (attackCooldown < attackCooldownMax) {
         attackCooldown += 0.5;

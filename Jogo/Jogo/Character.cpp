@@ -46,19 +46,3 @@ void Character::setDead()
     }
 }
 
-
-void Character::resetVelocityY()
-{
-    velocity.y = 0.f;
-}
-
-void Character::updateCollision(GraphicsManager* gm)
-{
-    if (gm != nullptr) {
-        if (getPosition().y + getDimensions().y > gm->getWindow()->getSize().y) {
-            setPosition(getPosition().x,
-                gm->getWindow()->getSize().y - getDimensions().y);
-            resetVelocityY();
-        }
-    }
-}

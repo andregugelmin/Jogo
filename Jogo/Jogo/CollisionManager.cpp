@@ -38,6 +38,7 @@ bool CollisionManager::isColliding(Collider* c1, Collider* c2)
 	
 }
 
+
 void CollisionManager::checkCollisions()
 {
 	for (auto paux1 = colliders.begin(); paux1 != colliders.end(); paux1++) {				
@@ -75,12 +76,23 @@ void CollisionManager::checkMapCollision(Collider* c)
 		for (unsigned int i = top; i <= bottom; i++)
 			for (unsigned int j = left; j <= right; j++)
 			{
-				if (TileMap[i][j] == 'B' || TileMap[i][j] == 'C' || TileMap[i][j] == 'D')
+				if (tileMap[i][j] == 'B' || tileMap[i][j] == 'C' || tileMap[i][j] == 'D')
 				{
 					
 					c->collide("tile", sf::Vector2f(j * 32, i * 32), sf::Vector2f(32, 32));
 				}
 			}
+	}
+}
+
+void CollisionManager::setTileMapCollisions(char tm[][W], int h, int w)
+{
+	for (int i = 0; i < h; i++)
+	{
+		for (int j = 0; j < w; j++)
+		{
+			tileMap[i][j] = tm[i][j];
+		}
 	}
 }
 

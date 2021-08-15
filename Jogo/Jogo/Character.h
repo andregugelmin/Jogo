@@ -29,8 +29,6 @@ public:
 
     void setDead();
 
-    void resetVelocityY();
-    virtual void updateCollision(GraphicsManager* gm);
 
 };
 

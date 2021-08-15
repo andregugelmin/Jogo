@@ -14,7 +14,6 @@ LevelTest::~LevelTest()
 void LevelTest::init(GraphicsManager& gm)
 {
     graphicsManager = &gm;
-    player = new Player(sf::Vector2f(200.f, 0.f),"player");
     entitiesList.insert(player);
     entitiesList.insert(new Goblun(sf::Vector2f(100.f, 100.f), "enemy", player));
     entitiesList.insert(new Goblun(sf::Vector2f(400.f, 100.f), "enemy", player));
@@ -36,6 +35,8 @@ void LevelTest::init(GraphicsManager& gm)
 
     entitiesList.initEntities(this, collisionManager);
     tilesList.initEntities(this, collisionManager);
+
+    collisionManager.setTileMapCollisions(Level01, H, W);
 }
 
 void LevelTest::execute()

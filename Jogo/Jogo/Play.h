@@ -20,6 +20,8 @@ private:
 
     GameState current;
 
+    Player* player;
+
     void play();
 
     void goToLevel(LevelTest* level);

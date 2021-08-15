@@ -26,10 +26,7 @@ void Goblun::initVariables()
 
 void Goblun::update()
 {
-    updateMovement();
-    if (level != nullptr) {
-        updateCollision(level->getGraphicsManager());
-    }
+    updateMovement();   
 
     if (hitCooldown > 0) {
         hitCooldown--;
