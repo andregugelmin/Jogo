@@ -3,18 +3,17 @@
 #include<set>
 #include<math.h>
 #include"SFML/Graphics.hpp"
+#include "Definitions.h"
 
 namespace Nightmare {
 	class Collider;
 
-#define H 17
-#define W 177
 
 	class CollisionManager
 	{
 	private:
 		std::set<Collider*> colliders;
-		char tileMap[H][W];
+		char tileMap[HEIGHT][WIDTH];
 
 	public:
 		CollisionManager();
@@ -28,6 +27,6 @@ namespace Nightmare {
 		void checkCollisions();
 		void checkMapCollision(Collider* c);
 
-		void setTileMapCollisions(char tm[][W], int h, int w);
+		void setTileMapCollisions(char tm[][WIDTH], int h, int w);
 	};
 };

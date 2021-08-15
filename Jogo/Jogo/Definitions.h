@@ -5,6 +5,9 @@
 
 #define SPLASH_STATE_SHOW_TIME 1.0
 
+#define HEIGHT 20
+#define WIDTH 177
+
 #define SPLASH_SCENE_BACKGROUND_FILEPATH "Textures/splashBackground.png"
 #define MAIN_MENU_BACKGROUND_FILEPATH "Textures/sky.png"
 #define GAME_BACKGROUND_FILEPATH "Textures/bgcar.png"

@@ -75,7 +75,7 @@ namespace Nightmare {
 		unsigned int left = static_cast<unsigned int>(floor((pos.x - dim.x / 2) / 32));
 		unsigned int right = static_cast<unsigned int>(ceil((pos.x + dim.x / 2) / 32));
 
-		if (pos.x >= 0 && pos.y >= 0 && pos.x < 177 * 32 && pos.y < 17 * 32) {
+		if (pos.x >= 0 && pos.y >= 0 && pos.x < WIDTH * 32 && pos.y < HEIGHT * 32) {
 
 			for (unsigned int i = top; i <= bottom; i++)
 				for (unsigned int j = left; j <= right; j++)
@@ -94,7 +94,7 @@ namespace Nightmare {
 		}
 	}
 
-	void CollisionManager::setTileMapCollisions(char tm[][W], int h, int w)
+	void CollisionManager::setTileMapCollisions(char tm[][WIDTH], int h, int w)
 	{
 		for (int i = 0; i < h; i++)
 		{

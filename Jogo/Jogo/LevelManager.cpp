@@ -1,4 +1,5 @@
 #include "LevelManager.h"
+#include "Definitions.h"
 #include<iostream>
 
 namespace Nightmare {
@@ -22,8 +23,8 @@ namespace Nightmare {
         entitiesList.insert(new Goblun(sf::Vector2f(400.f, 100.f), "enemy", player));
         entitiesList.insert(new SandSnake(sf::Vector2f(500.f, 100.f), "enemy2", player));
 
-        for (int i = 0; i < H; i++)
-            for (int j = 0; j < W; j++)
+        for (int i = 0; i < HEIGHT; i++)
+            for (int j = 0; j < WIDTH; j++)
             {
                 if (Level01[i][j] == 'B') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/2.png", "tile"));
 
@@ -51,7 +52,7 @@ namespace Nightmare {
         entitiesList.initEntities(this, collisionManager);
         tilesList.initEntities(this, collisionManager);
 
-        collisionManager.setTileMapCollisions(Level01, H, W);
+        collisionManager.setTileMapCollisions(Level01, HEIGHT, WIDTH);
     }
 
     void LevelManager::execute()

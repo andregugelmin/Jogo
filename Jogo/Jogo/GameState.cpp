@@ -85,7 +85,7 @@ namespace Nightmare
 
 	void GameState::Draw(float dt)
 	{
-		this->_data->window.clear(sf::Color::White);
+		/*this->_data->window.clear(sf::Color::White);*/
 
 	}
 	void GameState::run()
