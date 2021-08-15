@@ -38,8 +38,6 @@ namespace Nightmare
 
         void Run();
 
-        GraphicsManager graphicsManager;
-
 
         GameState current;
 
