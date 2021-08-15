@@ -13,7 +13,6 @@ class CollisionManager
 {
 private:
 	std::set<Collider*> colliders;
-	std::set<Collider*>::iterator it;
     char tileMap[H][W];
    
 public:
