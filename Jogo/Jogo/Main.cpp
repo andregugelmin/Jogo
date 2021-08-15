@@ -1,7 +1,10 @@
-#include "Play.h"
+#include "Game.h"
+#include "Definitions.h"
+
+
 int main()
 {
-    Play game;
+	Nightmare::Game(SCREEN_WIDTH, SCREEN_HEIGHT, "Nightmare");
 
-    return 0;
+	return EXIT_SUCCESS;
 }
