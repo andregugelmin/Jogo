@@ -1,5 +1,5 @@
 #include "Entity.h"
-#include "LevelTest.h"
+#include "LevelManager.h"
 
 Entity::Entity(sf::Vector2f pos, const char* textureFile): position(pos), velocity(sf::Vector2f(0.0f, 0.0f)), scale(sf::Vector2f(1.0f, 1.0f)), path(textureFile), level(nullptr)
 {
@@ -9,7 +9,7 @@ Entity::~Entity()
 {
 }
 
-void Entity::init(LevelTest* lvl, CollisionManager& cm)
+void Entity::init(LevelManager* lvl, CollisionManager& cm)
 {
     if (lvl != nullptr) {
         setLevel(lvl);
@@ -51,7 +51,7 @@ const sf::Vector2f Entity::getVelocity() const
     return velocity;
 }
 
-void Entity::setLevel(LevelTest* lvl)
+void Entity::setLevel(LevelManager* lvl)
 {
 	level = lvl;
 }

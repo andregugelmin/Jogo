@@ -5,7 +5,7 @@
 
 class GraphicsManager;
 class CollisionManager;
-class LevelTest;
+class LevelManager;
 
 class EntityList
 {
@@ -21,7 +21,7 @@ public:
     void insert(Entity* info);
     void removeEntity(Entity* info);
 
-    void initEntities(LevelTest* lvl, CollisionManager& cm);
+    void initEntities(LevelManager* lvl, CollisionManager& cm);
     void updateEntities(CollisionManager& cm);
     void drawEntities();
     void destroyEntities();

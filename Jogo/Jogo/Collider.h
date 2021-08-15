@@ -11,7 +11,7 @@ public:
 	virtual ~Collider();
 
 
-	virtual void init(LevelTest* lvl, CollisionManager& cm);
+	virtual void init(LevelManager* lvl, CollisionManager& cm);
 
 	virtual void draw() override;
 

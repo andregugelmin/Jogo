@@ -1,6 +1,6 @@
 #include <math.h>
 #include "Projectile.h"
-#include "LevelTest.h"
+#include "LevelManager.h"
 #include<iostream>
 
 Projectile::Projectile(sf::Vector2f pos, const char* textureFile, const char* id, sf::Vector2f targetPos, float spd, float ltime) :

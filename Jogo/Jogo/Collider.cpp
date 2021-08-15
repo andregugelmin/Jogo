@@ -1,5 +1,5 @@
 #include "Collider.h"
-#include "LevelTest.h"
+#include "LevelManager.h"
 #include <iostream>
 
 Collider::Collider(sf::Vector2f pos, const char* textureFile, const char* id): Entity(pos, textureFile), ID(id)
@@ -10,7 +10,7 @@ Collider::~Collider()
 {
 }
 
-void Collider::init(LevelTest* lvl, CollisionManager& cm)
+void Collider::init(LevelManager* lvl, CollisionManager& cm)
 {
 	if (lvl != nullptr) {
 		setLevel(lvl);

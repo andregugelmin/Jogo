@@ -1,5 +1,5 @@
 #include "GiantBat.h"
-#include "LevelTest.h"
+#include "LevelManager.h"
 GiantBat::GiantBat(sf::Vector2f pos,  const char* id, Player* p):
     Enemy(pos, "Textures/Enemy3.png", id, p)
 {

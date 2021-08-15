@@ -1,6 +1,6 @@
 #include<math.h>
 #include "SandSnake.h"
-#include "LevelTest.h"
+#include "LevelManager.h"
 #include <iostream>
 
 SandSnake::SandSnake(sf::Vector2f pos, const char* id, Player* p):

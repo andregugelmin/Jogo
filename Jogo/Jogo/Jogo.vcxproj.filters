@@ -51,7 +51,7 @@
     <ClCompile Include="Projectile.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="LevelTest.cpp">
+    <ClCompile Include="LevelManager.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
@@ -128,7 +128,7 @@
     <ClInclude Include="Projectile.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="LevelTest.h">
+    <ClInclude Include="LevelManager.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">

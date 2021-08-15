@@ -13,7 +13,7 @@
 #define H 17
 #define W 177
 
-class LevelTest
+class LevelManager
 {
 private:
 	bool isWindowClosed;
@@ -68,8 +68,8 @@ private:
 
 
 public:
-	LevelTest();
-	~LevelTest();
+	LevelManager();
+	~LevelManager();
 
 	void init(GraphicsManager& gm);
 	void execute();

@@ -1,5 +1,5 @@
 #include "Obstacle.h"
-#include "LevelTest.h"
+#include "LevelManager.h"
 
 Obstacle::Obstacle(sf::Vector2f pos, const char* textureFile, const char* id): 
 	Collider(pos, textureFile, id)

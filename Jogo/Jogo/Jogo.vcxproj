@@ -167,7 +167,7 @@
     <ClCompile Include="Goblun.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
-    <ClCompile Include="LevelTest.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -195,7 +195,7 @@
     <ClInclude Include="Goblun.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GraphicsManager.h" />
-    <ClInclude Include="LevelTest.h" />
+    <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Player.h" />

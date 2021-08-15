@@ -4,7 +4,7 @@
 #include "State.h"
 #include "Game.h"
 #include "MainMenuState.h"
-#include "LevelTest.h"
+#include "LevelManager.h"
 #include "GraphicsManager.h"
 #include "CollisionManager.h"
 #include "Player.h"
@@ -38,7 +38,7 @@ namespace Nightmare
 
 		GraphicsManager graphicsManager;
 
-		LevelTest levelTest;
+		LevelManager levelManager;
 
 		Player* player;
 

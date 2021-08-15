@@ -1,17 +1,17 @@
-#include "LevelTest.h"
+#include "LevelManager.h"
 #include<iostream>
 
-LevelTest::LevelTest() :
+LevelManager::LevelManager() :
     isWindowClosed(false), graphicsManager(nullptr), player(nullptr)
 {
 }
 
-LevelTest::~LevelTest()
+LevelManager::~LevelManager()
 {
     player = nullptr;
 }
 
-void LevelTest::init(GraphicsManager& gm)
+void LevelManager::init(GraphicsManager& gm)
 {
     graphicsManager = &gm;
     entitiesList.insert(player);
@@ -39,7 +39,7 @@ void LevelTest::init(GraphicsManager& gm)
     collisionManager.setTileMapCollisions(Level01, H, W);
 }
 
-void LevelTest::execute()
+void LevelManager::execute()
 {
 
     sf::Event e;
@@ -78,7 +78,7 @@ void LevelTest::execute()
 }
 
 
-void LevelTest::spawnElement(Collider* info)
+void LevelManager::spawnElement(Collider* info)
 {
     if (info) {
         info->init(this, collisionManager);
@@ -86,27 +86,27 @@ void LevelTest::spawnElement(Collider* info)
     }
 }
 
-void LevelTest::destroyElement(Collider* info)
+void LevelManager::destroyElement(Collider* info)
 {
     deleteColliders.insert(info);
 }
 
-const EntityList LevelTest::getEntitiesList() const
+const EntityList LevelManager::getEntitiesList() const
 {
     return entitiesList;
 }
 
-GraphicsManager* LevelTest::getGraphicsManager() const
+GraphicsManager* LevelManager::getGraphicsManager() const
 {
     return graphicsManager;
 }
 
-CollisionManager* LevelTest::getCollisionManager()
+CollisionManager* LevelManager::getCollisionManager()
 {
     return &collisionManager;
 }
 
-void LevelTest::setPlayer(Player* p)
+void LevelManager::setPlayer(Player* p)
 {
     player = p;
 }

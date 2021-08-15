@@ -1,5 +1,5 @@
 #include "Character.h"
-#include "LevelTest.h"
+#include "LevelManager.h"
 #include <iostream>
 Character::Character(sf::Vector2f pos, const char* textureFile, const char* id):
 	Collider(pos, textureFile, id), gravity(0), drag(0), airResistance(0), velocityMaxY(0), velocityMin(0), acceleration(0),

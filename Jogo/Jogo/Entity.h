@@ -2,7 +2,7 @@
 #include "GraphicsManager.h"
 #include "CollisionManager.h"
 
-class LevelTest;
+class LevelManager;
 
 class Entity
 {
@@ -15,13 +15,13 @@ protected:
 
 	const char* path;
 
-	LevelTest* level;
+	LevelManager* level;
 
 public:
 	Entity(sf::Vector2f pos = sf::Vector2f(0.f,0.f), const char* textureFile = nullptr);
 	virtual ~Entity();
 
-	virtual void init(LevelTest* lvl, CollisionManager& cm);
+	virtual void init(LevelManager* lvl, CollisionManager& cm);
 	virtual void update() = 0;
 	virtual void updatePhysics();
 	virtual void draw() = 0;
@@ -33,7 +33,7 @@ public:
 	const sf::Vector2f getDimensions() const;
 	const sf::Vector2f getVelocity() const;
 
-	void setLevel(LevelTest* lvl);
+	void setLevel(LevelManager* lvl);
 	void setScale(sf::Vector2f s);
 	
 };

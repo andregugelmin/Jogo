@@ -20,7 +20,7 @@ void EntityList::removeEntity(Entity* info)
 }
 
 
-void EntityList::initEntities(LevelTest* lvl, CollisionManager& cm)
+void EntityList::initEntities(LevelManager* lvl, CollisionManager& cm)
 {
     Entity* paux = list.getBegin();
 

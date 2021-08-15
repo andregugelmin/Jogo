@@ -21,8 +21,8 @@ namespace Nightmare
 	{
 
 		player = new Player(sf::Vector2f(200.f, 0.f), "player");
-		levelTest.setPlayer(player);
-		levelTest.init(graphicsManager);
+		levelManager.setPlayer(player);
+		levelManager.init(graphicsManager);
 		run();
 
 		_gameState = GameStates::eReady;
@@ -91,6 +91,6 @@ namespace Nightmare
 	}
 	void GameState::run()
 	{
-		levelTest.execute();
+		levelManager.execute();
 	}
 }

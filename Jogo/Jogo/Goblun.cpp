@@ -1,5 +1,5 @@
 #include "Goblun.h"
-#include "LevelTest.h"
+#include "LevelManager.h"
 
 Goblun::Goblun(sf::Vector2f pos, const char* id, Player* p):
     Enemy(pos, "Textures/Enemy1.png", id, p)
