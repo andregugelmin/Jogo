@@ -1,7 +1,9 @@
 #include "GraphicsManager.h"
 #include <iostream>
 
-GraphicsManager::GraphicsManager() : window()	
+GraphicsManager::GraphicsManager() :
+	window(),
+	camera(sf::Vector2f(800, 600), sf::Vector2f(800, 600))
 {
 
 }

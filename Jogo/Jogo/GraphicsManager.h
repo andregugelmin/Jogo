@@ -10,6 +10,7 @@ class GraphicsManager
 {
 private:
 	sf::RenderWindow* window;
+	sf::View camera;
 	std::map<const std::string, sf::Texture*> textures;
 
 	std::map<std::string, sf::Texture> _textures;
