@@ -27,7 +27,7 @@ namespace Nightmare {
         Player* player;
 
         char Level01[H][W] = {
-        "G                                                                                                                                                                              H",
+        "MLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLM",
         "G                                                                                                                                                                              H",
         "G                                                                                                                                                                              H",
         "G                                                                                                                                                                              H",
@@ -47,7 +47,7 @@ namespace Nightmare {
         };
 
         char Level02[H][W] = {
-         "C                                                                                                                                                                              C",
+         "MLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLM",
          "C                                                                                                                                                                              C",
          "C                                                                                                                                                                              C",
          "C                                                                                                                                                                              C",
