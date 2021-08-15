@@ -2,7 +2,7 @@
 #include <iostream>
 
 GraphicsManager::GraphicsManager() :
-	window(new sf::RenderWindow(sf::VideoMode(800, 600), "Game", sf::Style::Close | sf::Style::Resize)),
+	window(new sf::RenderWindow(sf::VideoMode(1024, 768), "Game", sf::Style::Close | sf::Style::Resize)),
 	camera(sf::Vector2f(800, 600), sf::Vector2f(800, 600))
 {
 	window->setView(camera);
