@@ -67,11 +67,9 @@ namespace Nightmare
 
 		if (GameStates::ePlaying == _gameState)
 		{
-			if (_car.getGlobalBounds().intersects(dangerzone.getGlobalBounds()))
-			{
-				_car.setColor(sf::Color::Blue),
+			//condicional de game over
 					_gameState = GameStates::eGameOver;
-			}
+
 		}
 
 		if (GameStates::eGameOver == _gameState)

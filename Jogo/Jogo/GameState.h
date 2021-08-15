@@ -28,9 +28,6 @@ namespace Nightmare
 		GameDataRef _data;
 
 		sf::Sprite _background;
-		sf::Sprite _car;
-
-		sf::RectangleShape dangerzone;
 
 		int _gameState;
 
