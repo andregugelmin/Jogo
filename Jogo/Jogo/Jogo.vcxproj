@@ -163,7 +163,6 @@
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="PauseState.cpp" />
-    <ClCompile Include="Play.cpp" />
     <ClCompile Include="SandSnake.cpp" />
     <ClCompile Include="EntityList.cpp" />
     <ClCompile Include="Goblun.cpp" />
@@ -193,7 +192,6 @@
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="PauseState.h" />
-    <ClInclude Include="Play.h" />
     <ClInclude Include="SandSnake.h" />
     <ClInclude Include="EntityList.h" />
     <ClInclude Include="Goblun.h" />
