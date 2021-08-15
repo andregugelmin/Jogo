@@ -120,3 +120,8 @@ void LevelManager::setPlayer(Player* p)
 {
     player = p;
 }
+
+void LevelManager::setGraphicsManager(GraphicsManager* gm)
+{
+    graphicsManager = gm;
+}

@@ -13,8 +13,8 @@
 #define H 17
 #define W 177
 
-class LevelManager
-{
+class LevelManager{
+
 private:
 	bool isWindowClosed;
 	GraphicsManager* graphicsManager;
@@ -80,5 +80,6 @@ public:
 	GraphicsManager* getGraphicsManager() const;
 	CollisionManager* getCollisionManager();
 	void setPlayer(Player* p);
+    void setGraphicsManager(GraphicsManager* gm);
 };
 
