@@ -3,26 +3,29 @@
 #include "Entity.h"
 #include "List.h"
 
-class GraphicsManager;
-class CollisionManager;
-class LevelManager;
+namespace Nightmare {
 
-class EntityList
-{
-private:
+    class GraphicsManager;
+    class CollisionManager;
+    class LevelManager;
 
-    List<Entity*> list;
+    class EntityList
+    {
+    private:
 
-public:
+        List<Entity*> list;
 
-    EntityList();
-    ~EntityList();
+    public:
 
-    void insert(Entity* info);
-    void removeEntity(Entity* info);
+        EntityList();
+        ~EntityList();
 
-    void initEntities(LevelManager* lvl, CollisionManager& cm);
-    void updateEntities(CollisionManager& cm);
-    void drawEntities();
-    void destroyEntities();
+        void insert(Entity* info);
+        void removeEntity(Entity* info);
+
+        void initEntities(LevelManager* lvl, CollisionManager& cm);
+        void updateEntities(CollisionManager& cm);
+        void drawEntities();
+        void destroyEntities();
+    };
 };

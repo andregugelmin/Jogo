@@ -1,16 +1,18 @@
 #include "Enemy.h"
 
-Enemy::Enemy(sf::Vector2f pos, const char* textureFile, const char* id, Player* p):
-    Character(pos, textureFile, id), player(p)
-{
-}
+namespace Nightmare {
 
-Enemy::~Enemy()
-{
-}
+    Enemy::Enemy(sf::Vector2f pos, const char* textureFile, const char* id, Player* p) :
+        Character(pos, textureFile, id), player(p)
+    {
+    }
 
-void Enemy::setTarget(Player* _player)
-{
-    player = _player;
-}
+    Enemy::~Enemy()
+    {
+    }
 
+    void Enemy::setTarget(Player* _player)
+    {
+        player = _player;
+    }
+};

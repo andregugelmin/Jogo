@@ -31,6 +31,7 @@ namespace Nightmare
 
 	void GameState::HandleInput()
 	{
+		//nao funciona
 		sf::Event event;
 
 		while (this->_data->window.pollEvent(event))
