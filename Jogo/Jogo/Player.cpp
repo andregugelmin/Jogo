@@ -19,7 +19,7 @@ void Player::initVariables()
 {
     dir = 1;
     onGround = false;
-    gravity = 1.5f;
+    gravity = 1.0f;
     acceleration = 0.8f;
     drag = 0.9f;
     airResistance = 0.98f;
