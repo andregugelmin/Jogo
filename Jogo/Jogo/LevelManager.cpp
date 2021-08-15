@@ -30,13 +30,15 @@ void LevelManager::init(GraphicsManager& gm)
 
             if (Level01[i][j] == 'H') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/H.png", "tile"));
 
+            if (Level01[i][j] == 'D') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/D.png", "tile"));
+
             if (Level01[i][j] == 'I') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/I.png", "tile"));
 
             if (Level01[i][j] == 'K') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/K.png", "tile"));
 
             if (Level01[i][j] == 'J') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/J.png", "tile"));
 
-            if (Level01[i][j] == 'D') tilesList.insert(new Obstacle(sf::Vector2f(j * 32 , i * 32 ), "Textures/Tiles2/2.png", "tile"));
+            if (Level01[i][j] == 'L') tilesList.insert(new Obstacle(sf::Vector2f(j * 32 , i * 32 ), "Textures/Tiles2/L.png", "tile"));
 
             if (Level01[i][j] == '0') entitiesList.insert(new GiantBat(sf::Vector2f(j * 32 , i * 32 ), "enemy3", player));
 
