@@ -17,7 +17,7 @@ namespace Nightmare
     void GameOverState::Init()
     {
 
-        this->_data->assets.LoadTexture("Game Over Background", GAME_OVER_BACKGROUND_FILEPATH);
+        this->_data->assets.loadTexture(GAME_OVER_BACKGROUND_FILEPATH);
 
         _background.setTexture(this->_data->assets.GetTexture("Game Over Background"));
         _retryButton.setTexture(this->_data->assets.GetTexture("Play Button"));

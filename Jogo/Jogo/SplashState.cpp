@@ -16,7 +16,7 @@ namespace Nightmare
 
 	void SplashState::Init()
 	{
-		this->_data->assets.LoadTexture("Splash State Background", SPLASH_SCENE_BACKGROUND_FILEPATH);
+		this->_data->assets.loadTexture("Splash State Background", SPLASH_SCENE_BACKGROUND_FILEPATH);
 
 		_background.setTexture(this->_data->assets.GetTexture("Splash State Background"));
 	}

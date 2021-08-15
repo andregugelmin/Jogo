@@ -13,6 +13,9 @@ private:
 	sf::View camera;
 	std::map<const std::string, sf::Texture*> textures;
 
+	std::map<std::string, sf::Texture> _textures;
+	std::map<std::string, sf::Font> _fonts;
+
 public:
 	GraphicsManager();
 	~GraphicsManager();
@@ -22,8 +25,13 @@ public:
 	void draw(const std::string& path, const sf::Vector2f position);
 
 	bool loadTexture(const std::string& path);
+	void loadTexture(std::string name, std::string path);
 
+	sf::Texture& GetTexture(std::string name);
 	void center(const sf::Vector2f center);
+
+	void LoadFont(std::string name, std::string fileName);
+	sf::Font& GetFont(std::string name);
 
 	sf::RenderWindow* getWindow() const;
 

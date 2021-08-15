@@ -66,10 +66,40 @@ bool GraphicsManager::loadTexture(const std::string& path)
 	}
 }
 
+void GraphicsManager::loadTexture(std::string name, std::string path)
+{
+		sf::Texture tex;
+
+		if (tex.loadFromFile(path))
+		{
+			this->_textures[name] = tex;
+		}
+}
+
+sf::Texture& GraphicsManager::GetTexture(std::string name)
+{
+	return this->_textures.at(name);
+}
+
 void GraphicsManager::center(const sf::Vector2f center)
 {
 	camera.setCenter(sf::Vector2f(center.x, center.y - 150));
 	window->setView(camera);
+}
+
+void GraphicsManager::LoadFont(std::string name, std::string fileName)
+{
+	sf::Font font;
+
+	if (font.loadFromFile(fileName))
+	{
+		this->_fonts[name] = font;
+	}
+}
+
+sf::Font& GraphicsManager::GetFont(std::string name)
+{
+	return this->_fonts.at(name);
 }
 
 sf::RenderWindow* GraphicsManager::getWindow() const

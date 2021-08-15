@@ -6,8 +6,6 @@
 #include "PauseState.h"
 #include "GameOverState.h"
 #include "MainMenuState.h"
-#include "Play.h"
-
 #include <iostream>
 
 using namespace sf;

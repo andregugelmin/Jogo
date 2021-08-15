@@ -7,7 +7,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 #include "StateMachine.h"
-#include "AssetManager.h"
+#include "GraphicsManager.h"
 #include "InputManager.h"
 
 
@@ -17,7 +17,7 @@ namespace Nightmare
     {
         StateMachine machine;
         sf::RenderWindow window;
-        AssetManager assets;
+        GraphicsManager assets;
         InputManager input;
     };
 

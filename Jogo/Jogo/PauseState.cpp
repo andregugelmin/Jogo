@@ -16,7 +16,7 @@ namespace Nightmare
 
 	void PauseState::Init()
 	{
-		this->_data->assets.LoadTexture("Game Background Pause", GAME_PAUSE_FILEPATH);
+		this->_data->assets.loadTexture(GAME_PAUSE_FILEPATH);
 
 		_background.setTexture(this->_data->assets.GetTexture("Game Background Pause"));
 	}
