@@ -19,16 +19,27 @@ namespace Nightmare {
     {
         graphicsManager = &gm;
         entitiesList.insert(player);
-        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 100.f), "enemy", player));
-        entitiesList.insert(new Goblun(sf::Vector2f(400.f, 100.f), "enemy", player));
-        entitiesList.insert(new SandSnake(sf::Vector2f(500.f, 100.f), "enemy2", player));
+        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
+        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
+        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
+        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
+        entitiesList.insert(new SandSnake(sf::Vector2f(800.f, 900.f), "enemy2", player));
+
+      
+        initLevel(Level01);
+        entitiesList.initEntities(this, collisionManager);
+        
+        
+    }
+
+    void LevelManager::initLevel(char tm[HEIGHT][WIDTH]) {
 
         for (int i = 0; i < HEIGHT; i++)
             for (int j = 0; j < WIDTH; j++)
             {
-                if (Level01[i][j] == 'B') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/2.png", "tile"));
+                if (Level01[i][j] == 'B') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/B.png", "tile"));
 
-                if (Level01[i][j] == 'C') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/4.png", "tile"));
+                if (Level01[i][j] == 'C') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/C.png", "tile"));
 
                 if (Level01[i][j] == 'G') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/G.png", "tile"));
 
@@ -36,7 +47,11 @@ namespace Nightmare {
 
                 if (Level01[i][j] == 'D') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32 + 25), "Textures/Tiles2/D.png", "tile"));
 
-                if (Level01[i][j] == 'E') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32 + 25), "Textures/Tiles2/E.png", "tile"));
+                if (Level01[i][j] == 'E') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/E.png", "tile"));
+
+                if (Level01[i][j] == 'N') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/N.png", "tile"));
+
+                if (Level01[i][j] == 'O') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/O.png", "tile"));
 
                 if (Level01[i][j] == 'I') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/I.png", "tile"));
 
@@ -51,10 +66,9 @@ namespace Nightmare {
                 if (Level01[i][j] == ' ') continue;
             }
 
-        entitiesList.initEntities(this, collisionManager);
         tilesList.initEntities(this, collisionManager);
-
         collisionManager.setTileMapCollisions(Level01, HEIGHT, WIDTH);
+
     }
 
     void LevelManager::execute()
