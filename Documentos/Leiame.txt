@@ -1,0 +1,1 @@
+O programa utiliza a biblioteca gráfica SFML, foi usado o compilador Visual Studio 2019, e foi testado a execução apenas no sistema operacional Windows10
