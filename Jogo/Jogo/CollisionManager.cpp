@@ -81,7 +81,8 @@ namespace Nightmare {
 				for (unsigned int j = left; j <= right; j++)
 				{
 					if (tileMap[i][j] == 'B' || tileMap[i][j] == 'C' || tileMap[i][j] == 'G' || tileMap[i][j] == 'H'
-						|| tileMap[i][j] == 'I' || tileMap[i][j] == 'K' || tileMap[i][j] == 'J' || tileMap[i][j] == 'L')
+						|| tileMap[i][j] == 'I' || tileMap[i][j] == 'K' || tileMap[i][j] == 'J' || tileMap[i][j] == 'L'
+						|| tileMap[i][j] == 'E')
 					{
 
 						c->collide("tile", sf::Vector2f(j * 32, i * 32), sf::Vector2f(32, 32));
