@@ -55,6 +55,7 @@ namespace Nightmare {
             hitCooldown = 10;
             numLife--;
             if (numLife <= 0) {
+                player->increaseScore(50);
                 setDead();
             }
         }
@@ -75,7 +76,7 @@ namespace Nightmare {
     void GiantBat::shoot(sf::Vector2f targetPos)
     {
         if (level != nullptr && attackCooldown >= attackCooldownMax) {
-            level->spawnElement(new Projectile(position, "Textures/Projectile.png", "bullet", targetPos, 8.f, 150.f));
+            level->spawnElement(new Projectile(position, "Textures/Projectile.png", "enemyProjectile", targetPos, 8.f, 150.f));
             attackCooldown = 0.f;
             shoots++;
             if (shoots < 3) {

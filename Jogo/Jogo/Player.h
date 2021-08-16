@@ -12,6 +12,9 @@ namespace Nightmare {
 
         int dir;
 
+        int score;
+        
+        sf::Vector2f spawnPosition;
 
     public:
         Player(sf::Vector2f pos = sf::Vector2f(0.f, 0.f), const char* id = nullptr);
@@ -25,5 +28,7 @@ namespace Nightmare {
         void collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim) override;
 
         void shoot();
+
+        void increaseScore(const int s);
     };
 };

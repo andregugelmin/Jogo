@@ -35,17 +35,25 @@ namespace Nightmare {
         }
     }
 
-    void EntityList::updateEntities(CollisionManager& cm) {
+    void EntityList::updateEntities() {
 
         Entity* paux = list.getBegin();
         while (paux) {
             paux->update();
-            cm.checkCollisions();
-            paux->updatePhysics();
             paux = list.getNext();
 
         }
 
+    }
+
+    void EntityList::updatePhysicsEntities()
+    {
+        Entity* paux = list.getBegin();
+        while (paux) {
+            paux->updatePhysics();
+            paux = list.getNext();
+
+        }
     }
 
     void EntityList::drawEntities() {

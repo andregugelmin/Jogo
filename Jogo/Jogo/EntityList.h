@@ -24,7 +24,8 @@ namespace Nightmare {
         void removeEntity(Entity* info);
 
         void initEntities(LevelManager* lvl, CollisionManager& cm);
-        void updateEntities(CollisionManager& cm);
+        void updateEntities();
+        void updatePhysicsEntities();
         void drawEntities();
         void destroyEntities();
     };

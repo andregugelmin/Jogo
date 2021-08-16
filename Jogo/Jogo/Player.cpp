@@ -5,7 +5,7 @@
 
 namespace Nightmare {
     Player::Player(sf::Vector2f pos, const char* id) :
-        Character(pos, "Textures/Player1.png", id)
+        Character(pos, "Textures/Player1.png", id), score(0)
     {
         initVariables();
     }
@@ -17,6 +17,7 @@ namespace Nightmare {
 
     void Player::initVariables()
     {
+        numLife = 3;
         dir = 1;
         onGround = false;
         gravity = 1.0f;
@@ -30,15 +31,19 @@ namespace Nightmare {
         velocity.y = 0;
         attackCooldown = 20.f;
         attackCooldownMax = 20.f;
+        hitCooldown = 0;
+        spawnPosition = getPosition();
     }
 
     void Player::update()
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
             move(acceleration, 0);
+            dir = 1;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
             move(-acceleration, 0);
+            dir = -1;
         }
         if (onGround) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
@@ -47,13 +52,17 @@ namespace Nightmare {
             }
         }
 
+        if (hitCooldown > 0) {
+            hitCooldown--;
+        }
+
         velocity.y += gravity;
 
         if (velocity.x > 0) {
-            dir = 1;
+            
         }
         else if (velocity.x < 0) {
-            dir = -1;
+            
         }
 
         if (attackCooldown < attackCooldownMax) {
@@ -77,6 +86,17 @@ namespace Nightmare {
 
     void Player::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim)
     {
+
+        if (otherId == "enemy" || otherId == "enemy2" || otherId == "enemy3" || otherId == "enemyProjectile" || otherId == "damageObstacle") {
+            if (hitCooldown <= 0) {
+                hitCooldown = 10;
+                numLife--;
+                setPosition(spawnPosition.x, spawnPosition.y);
+                std::cout << numLife << std::endl;
+            }
+            
+        }
+
         if (otherId == "tile") {
 
             float deltax = otherPos.x - position.x;
@@ -127,6 +147,11 @@ namespace Nightmare {
             level->spawnElement(new Projectile(position, "Textures/PlayerProjectile.png", "PlayerProjectile", sf::Vector2f(this->position.x + dir, this->position.y), 8, 50));
             attackCooldown = 0.f;
         }
+    }
+
+    void Player::increaseScore(const int s)
+    {
+        score += s;
     }
 
 };

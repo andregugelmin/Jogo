@@ -34,9 +34,9 @@ namespace Nightmare {
 
                 if (Level01[i][j] == 'H') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/H.png", "tile"));
 
-                if (Level01[i][j] == 'D') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32 + 25), "Textures/Tiles2/D.png", "tile"));
+                if (Level01[i][j] == 'D') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32 + 25), "Textures/Tiles2/D.png", "damageObstacle"));
 
-                if (Level01[i][j] == 'E') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32 + 25), "Textures/Tiles2/E.png", "tile"));
+                if (Level01[i][j] == 'E') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/E.png", "tile"));
 
                 if (Level01[i][j] == 'I') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/I.png", "tile"));
 
@@ -85,8 +85,9 @@ namespace Nightmare {
 
             tilesList.drawEntities();
 
-            entitiesList.updateEntities(collisionManager);
-
+            entitiesList.updateEntities();
+            collisionManager.checkCollisions();
+            entitiesList.updatePhysicsEntities();
             entitiesList.drawEntities();
 
 

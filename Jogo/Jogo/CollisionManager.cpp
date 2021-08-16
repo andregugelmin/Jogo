@@ -89,7 +89,7 @@ namespace Nightmare {
 
 					}
 					else if (tileMap[i][j] == 'D') {
-						c->collide("tile", sf::Vector2f(j * 32, i * 32 + 15), sf::Vector2f(32, 7));
+						c->collide("damageObstacle", sf::Vector2f(j * 32, i * 32 + 25), sf::Vector2f(32, 7));
 					}
 				}
 		}

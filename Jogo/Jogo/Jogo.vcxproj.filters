@@ -13,6 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Arquivos de Cabeçalho\States">
+      <UniqueIdentifier>{4f78ad92-cfe9-4c83-a106-8695ac27930a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Lists">
+      <UniqueIdentifier>{5d8444e8-7338-4edf-a03d-98ff32bd59a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Managers">
+      <UniqueIdentifier>{27c30666-b2bf-4068-85c4-7616eef9bf81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Entities">
+      <UniqueIdentifier>{c270eb0e-a566-4c6f-ad50-8c2477f2c8c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\Entities">
+      <UniqueIdentifier>{4298dd5e-8976-46ce-aa21-0ae296429606}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\States">
+      <UniqueIdentifier>{23675e36-8657-4324-a486-20aff2644cdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\Managers">
+      <UniqueIdentifier>{dde40581-dfe9-405f-9cbc-e7418b3a8246}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\List">
+      <UniqueIdentifier>{7f81259c-d552-4880-af21-d12860109d93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -21,154 +45,154 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Goblun.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityList.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="GraphicsManager.cpp">
-      <Filter>Arquivos de Origem</Filter>
+    <ClCompile Include="Character.cpp">
+      <Filter>Arquivos de Origem\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Collider.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionManager.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="SandSnake.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Projectile.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelManager.cpp">
-      <Filter>Arquivos de Origem</Filter>
+      <Filter>Arquivos de Origem\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>Arquivos de Origem</Filter>
+      <Filter>Arquivos de Origem\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Arquivos de Origem\Entities</Filter>
     </ClCompile>
     <ClCompile Include="GiantBat.cpp">
-      <Filter>Arquivos de Origem</Filter>
+      <Filter>Arquivos de Origem\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Arquivos de Origem</Filter>
+    <ClCompile Include="Goblun.cpp">
+      <Filter>Arquivos de Origem\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Obstacle.cpp">
-      <Filter>Arquivos de Origem</Filter>
+      <Filter>Arquivos de Origem\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="SplashState.cpp">
-      <Filter>Arquivos de Origem</Filter>
+    <ClCompile Include="SandSnake.cpp">
+      <Filter>Arquivos de Origem\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="State.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="StateMachine.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenuState.cpp">
-      <Filter>Arquivos de Origem</Filter>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Arquivos de Origem\Entities</Filter>
     </ClCompile>
     <ClCompile Include="GameState.cpp">
-      <Filter>Arquivos de Origem</Filter>
+      <Filter>Arquivos de Origem\States</Filter>
     </ClCompile>
     <ClCompile Include="PauseState.cpp">
-      <Filter>Arquivos de Origem</Filter>
+      <Filter>Arquivos de Origem\States</Filter>
+    </ClCompile>
+    <ClCompile Include="SplashState.cpp">
+      <Filter>Arquivos de Origem\States</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine.cpp">
+      <Filter>Arquivos de Origem\States</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Arquivos de Origem\States</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuState.cpp">
+      <Filter>Arquivos de Origem\States</Filter>
     </ClCompile>
     <ClCompile Include="GameOverState.cpp">
-      <Filter>Arquivos de Origem</Filter>
+      <Filter>Arquivos de Origem\States</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsManager.cpp">
+      <Filter>Arquivos de Origem\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Arquivos de Origem\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>Arquivos de Origem\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Arquivos de Origem\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Arquivos de Origem\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityList.cpp">
+      <Filter>Arquivos de Origem\List</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Goblun.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityList.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicsManager.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="List.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionManager.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="SandSnake.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Projectile.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelManager.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="GiantBat.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Obstacle.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Definitions.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="SplashState.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
+    <ClInclude Include="Collider.h">
+      <Filter>Arquivos de Cabeçalho\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
+    <ClInclude Include="Enemy.h">
+      <Filter>Arquivos de Cabeçalho\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
+    <ClInclude Include="Goblun.h">
+      <Filter>Arquivos de Cabeçalho\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="GiantBat.h">
+      <Filter>Arquivos de Cabeçalho\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Arquivos de Cabeçalho\Entities</Filter>
     </ClInclude>
     <ClInclude Include="StateMachine.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
+      <Filter>Arquivos de Cabeçalho\States</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Arquivos de Cabeçalho\States</Filter>
     </ClInclude>
     <ClInclude Include="MainMenuState.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
+      <Filter>Arquivos de Cabeçalho\States</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="PauseState.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
+      <Filter>Arquivos de Cabeçalho\States</Filter>
     </ClInclude>
     <ClInclude Include="GameOverState.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
+      <Filter>Arquivos de Cabeçalho\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Arquivos de Cabeçalho\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="SandSnake.h">
+      <Filter>Arquivos de Cabeçalho\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="SplashState.h">
+      <Filter>Arquivos de Cabeçalho\States</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityList.h">
+      <Filter>Arquivos de Cabeçalho\Lists</Filter>
+    </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>Arquivos de Cabeçalho\Lists</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>Arquivos de Cabeçalho\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Arquivos de Cabeçalho\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Arquivos de Cabeçalho\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsManager.h">
+      <Filter>Arquivos de Cabeçalho\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Arquivos de Cabeçalho\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>Arquivos de Cabeçalho\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseState.h">
+      <Filter>Arquivos de Cabeçalho\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Arquivos de Cabeçalho\Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
