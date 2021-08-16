@@ -30,7 +30,6 @@ namespace Nightmare
             LEVELTEST
         };
 
-        // Update do relogio agora vai andré
         const float dt = 1.0f / 60.0f;
         sf::Clock _clock;
 

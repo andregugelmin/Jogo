@@ -91,8 +91,7 @@ namespace Nightmare {
             if (hitCooldown <= 0) {
                 hitCooldown = 10;
                 numLife--;
-                //setPosition(spawnPosition.x, spawnPosition.y);
-                std::cout << numLife << std::endl;
+                setPosition(spawnPosition.x, spawnPosition.y);
             }
             
         }
