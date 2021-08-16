@@ -13,6 +13,9 @@
 
 #define GAME_OVER_BACKGROUND_FILEPATH "Textures/gameover.png"
 
+
+#define MAIN_MENU_BACKGROUND_FILEPATH "Textures/sky.png"
+
 #define GAME_TITLE_FILEPATH "Textures/title.png"
 #define PLAY_BUTTON_FILEPATH "Textures/PlayButton.png"
 
