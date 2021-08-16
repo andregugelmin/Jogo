@@ -13,6 +13,7 @@ namespace Nightmare
 		_data->assets.setWindow(&_data->window);
 		this->Run();
 	}
+	
 
 	void Game::Run()
 	{

@@ -24,6 +24,8 @@ namespace Nightmare
 
 		float currentFrame = 0;
 
+		void run();
+
 	private:
 		GameDataRef _data;
 
@@ -33,13 +35,10 @@ namespace Nightmare
 
 		sf::Clock clock;
 
-		GraphicsManager graphicsManager;
-
 		LevelManager levelManager;
 
 		Player* player;
 
-		void run();
 
 
 	};
