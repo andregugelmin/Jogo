@@ -17,7 +17,7 @@ namespace Nightmare
 
 		void AddState(StateRef newState, bool isReplacing = true);
 		void RemoveState();
-		// Run at start of each loop in Game.cpp
+
 		void ProcessStateChanges();
 
 		StateRef& GetActiveState();

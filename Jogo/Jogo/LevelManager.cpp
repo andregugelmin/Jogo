@@ -90,20 +90,6 @@ namespace Nightmare {
                 }
             }
 
-            //if (GameStates::eGameOver != _gameState)
-            //{
-            //    _gameState = GameStates::ePlaying;
-            //}
-
-            //if (sf::Event::KeyReleased == event.type)
-            //{
-            //    if (sf::Keyboard::P == event.key.code)
-            //    {
-            //        // Switch To Pause
-            //        this->_data->machine.AddState(StateRef(new PauseState(_data)), false);
-            //    }
-            //}
-
             for (Collider* it : deleteColliders) {
 
                 entitiesList.removeEntity(it);
