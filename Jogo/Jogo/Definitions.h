@@ -18,7 +18,6 @@
 #define GAME_TITLE_FILEPATH "Textures/title.png"
 #define PLAY_BUTTON_FILEPATH "Textures/PlayButton.png"
 
-#define CAR_FILEPATH "Textures/red.png"
 #define ICON_FILEPATH "Textures/redicon.png"
 
 #define HORN_PATH "Textures/239030__poyekhali__horn-2.ogg"

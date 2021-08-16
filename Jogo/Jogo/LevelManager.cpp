@@ -73,6 +73,9 @@ namespace Nightmare {
 
     void LevelManager::execute()
     {
+        sf::Texture background;
+        background.loadFromFile("Textures/Background.png");
+        sf::Sprite sBg(background);
 
         sf::Event e;
 
@@ -96,6 +99,11 @@ namespace Nightmare {
             deleteColliders.clear();
 
             graphicsManager->clear();
+
+            auto window = graphicsManager->getWindow();
+
+            window->draw(sBg);
+
 
             tilesList.drawEntities();
 
