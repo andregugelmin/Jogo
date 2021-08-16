@@ -1,5 +1,7 @@
 #include "LevelManager.h"
 #include<iostream>
+#include <stdlib.h> 
+#include <time.h>
 #include "GameState.h"
 #include "GameOverState.h"
 #include "Definitions.h"
@@ -9,6 +11,7 @@ namespace Nightmare {
     LevelManager::LevelManager() :
         isWindowClosed(false), levelChanged(false), graphicsManager(nullptr), player(nullptr)
     {
+        
     }
 
     LevelManager::~LevelManager()
@@ -20,11 +23,7 @@ namespace Nightmare {
     {
         graphicsManager = &gm;
         entitiesList.insert(player);
-        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
-        entitiesList.insert(new Goblun(sf::Vector2f(200.f, 900.f), "enemy", player));
-        entitiesList.insert(new Goblun(sf::Vector2f(110.f, 900.f), "enemy", player));
-        entitiesList.insert(new Goblun(sf::Vector2f(150.f, 900.f), "enemy", player));
-        entitiesList.insert(new SandSnake(sf::Vector2f(800.f, 900.f), "enemy2", player));
+        spawnRandomEnemies();
 
 
         initLevel(Level01);
@@ -183,22 +182,40 @@ namespace Nightmare {
             entitiesList.destroyEntities();
             tilesList.destroyEntities();
             entitiesList.insert(player);
-            entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
-            entitiesList.insert(new Goblun(sf::Vector2f(600.f, 900.f), "enemy", player));
-            entitiesList.insert(new Goblun(sf::Vector2f(110.f, 900.f), "enemy", player));
-            entitiesList.insert(new Goblun(sf::Vector2f(400.f, 900.f), "enemy", player));
-            entitiesList.insert(new SandSnake(sf::Vector2f(800.f, 500.f), "enemy2", player));
+            
+            spawnRandomEnemies();
+            
 
             collisionManager.addCollider(player);
             initLevel(Level02);
             deleteColliders.clear();
-            
-            
-            execute();
+            player->setPosition(100, 900);
             levelChanged = true;
+            execute();
+            
+        }     
+        
+    }
+    void LevelManager::spawnRandomEnemies()
+    {
+        srand(time(NULL));
+
+        int qtd1 = (rand() % 3) + 3;
+        int qtd2 = (rand() & 3) + 3;
+
+        for (int i = 0; i < qtd1; i++) {
+            int posx = (rand() % 5000) + 300;
+            int posy = (rand() % 200) + 700;
+
+            entitiesList.insert(new Goblun(sf::Vector2f(posx, posy), "enemy", player));
         }
-        
-        
-        
+
+        for (int i = 0; i < qtd2; i++) {
+            int posx2 = (rand() % 5000) + 300;
+            int posy2 = (rand() % 200) + 500;
+
+            entitiesList.insert(new SandSnake(sf::Vector2f(posx2, posy2), "enemy2", player));
+        }
+
     }
 };

@@ -123,5 +123,6 @@ namespace Nightmare {
         void setGraphicsManager(GraphicsManager* gm);
 
         void changeLevel();
+        void spawnRandomEnemies();
     };
 };
