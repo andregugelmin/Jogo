@@ -20,6 +20,6 @@ namespace Nightmare {
 
         void collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim) override;
 
-        void updateMovement();
+        void followPlayer();
     };
 };

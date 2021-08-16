@@ -20,7 +20,7 @@ namespace Nightmare {
 
         void collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim) override;
 
-        void followPlayer(float range);
+        void followPlayer(const float range);
 
         void shoot(sf::Vector2f targetPos);
     };

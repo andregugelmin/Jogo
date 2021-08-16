@@ -1,9 +1,10 @@
 #include "LevelManager.h"
-#include "Definitions.h"
 #include<iostream>
+#include "GameState.h"
+#include "GameOverState.h"
+#include "Definitions.h"
 
 namespace Nightmare {
-
 
     LevelManager::LevelManager() :
         isWindowClosed(false), graphicsManager(nullptr), player(nullptr)
@@ -19,20 +20,9 @@ namespace Nightmare {
     {
         graphicsManager = &gm;
         entitiesList.insert(player);
-        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
-        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
-        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
-        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
-        entitiesList.insert(new SandSnake(sf::Vector2f(800.f, 900.f), "enemy2", player));
-
-      
-        initLevel(Level01);
-        entitiesList.initEntities(this, collisionManager);
-        
-        
-    }
-
-    void LevelManager::initLevel(char tm[HEIGHT][WIDTH]) {
+        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 100.f), "enemy", player));
+        entitiesList.insert(new Goblun(sf::Vector2f(400.f, 100.f), "enemy", player));
+        entitiesList.insert(new SandSnake(sf::Vector2f(500.f, 100.f), "enemy2", player));
 
         for (int i = 0; i < HEIGHT; i++)
             for (int j = 0; j < WIDTH; j++)
@@ -66,9 +56,10 @@ namespace Nightmare {
                 if (Level01[i][j] == ' ') continue;
             }
 
+        entitiesList.initEntities(this, collisionManager);
         tilesList.initEntities(this, collisionManager);
-        collisionManager.setTileMapCollisions(Level01, HEIGHT, WIDTH);
 
+        collisionManager.setTileMapCollisions(Level01, HEIGHT, WIDTH);
     }
 
     void LevelManager::execute()
@@ -87,6 +78,20 @@ namespace Nightmare {
                     isWindowClosed = true;
                 }
             }
+
+            //if (GameStates::eGameOver != _gameState)
+            //{
+            //    _gameState = GameStates::ePlaying;
+            //}
+
+            //if (sf::Event::KeyReleased == event.type)
+            //{
+            //    if (sf::Keyboard::P == event.key.code)
+            //    {
+            //        // Switch To Pause
+            //        this->_data->machine.AddState(StateRef(new PauseState(_data)), false);
+            //    }
+            //}
 
             for (Collider* it : deleteColliders) {
 
@@ -107,10 +112,15 @@ namespace Nightmare {
 
             tilesList.drawEntities();
 
-            entitiesList.updateEntities(collisionManager);
+            entitiesList.updateEntities();
+
+            collisionManager.checkCollisions();
+
+            entitiesList.updatePhysicsEntities();
 
             entitiesList.drawEntities();
 
+            
 
             graphicsManager->display();
 
@@ -155,4 +165,4 @@ namespace Nightmare {
     {
         graphicsManager = gm;
     }
-}
+};

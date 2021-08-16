@@ -56,7 +56,7 @@ namespace Nightmare {
     void SandSnake::shoot(sf::Vector2f targetPos)
     {
         if (level != nullptr && attackCooldown >= attackCooldownMax) {
-            level->spawnElement(new Projectile(position, "Textures/Projectile.png", "bullet", targetPos, 6.f, 150.f));
+            level->spawnElement(new Projectile(position, "Textures/Projectile.png", "enemyProjectile", targetPos, 6.f, 150.f));
             attackCooldown = 0.f;
         }
     }
@@ -67,6 +67,7 @@ namespace Nightmare {
             hitCooldown = 10;
             numLife--;
             if (numLife <= 0) {
+                player->increaseScore(15);
                 setDead();
             }
         }

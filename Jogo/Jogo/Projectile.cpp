@@ -31,7 +31,7 @@ namespace Nightmare {
     void Projectile::collide(const char* otherId, sf::Vector2f otherPos, sf::Vector2f otherDim)
     {
         if (level != nullptr) {
-            if (this->ID == "bullet" && otherId == "player") {
+            if (this->ID == "enemyProjectile" && otherId == "player") {
                 level->destroyElement(this);
             }
             else if (this->ID == "PlayerProjectile" && (otherId == "enemy" || otherId == "enemy2" || otherId == "enemy3")) {

@@ -27,7 +27,7 @@ namespace Nightmare {
 
     void Goblun::update()
     {
-        updateMovement();
+        followPlayer();
 
         if (hitCooldown > 0) {
             hitCooldown--;
@@ -59,6 +59,7 @@ namespace Nightmare {
             hitCooldown = 10;
             numLife--;
             if (numLife <= 0) {
+                player->increaseScore(10);
                 setDead();
             }
         }
@@ -107,26 +108,22 @@ namespace Nightmare {
     }
 
 
-    void Goblun::updateMovement()
+    void Goblun::followPlayer()
     {
         if (player) {
             sf::Vector2f targetPos = player->getPosition();
-            sf::Vector2f thisPos = getPosition();
-            if (targetPos.x - thisPos.x < 500) {
-                if (targetPos.y - thisPos.y <= 5.f && targetPos.y - thisPos.y > -200.f) {
+            sf::Vector2f thisPos = getPosition();            
+            if (targetPos.y - thisPos.y <= 5.f && targetPos.y - thisPos.y > -200.f && targetPos.x - thisPos.x < 500) {
 
-                    if ((targetPos.x - thisPos.x) > 10.f) {
-                        move(acceleration, 0);
+                if ((targetPos.x - thisPos.x) > 10.f) {
+                    move(acceleration, 0);
 
-                    }
-                    else if ((targetPos.x - thisPos.x) < -10.f) {
-                        move(-acceleration, 0);
-                    }
                 }
-            }
-
+                else if ((targetPos.x - thisPos.x) < -10.f) {
+                    move(-acceleration, 0);
+                }
+            }    
         }
-
         velocity.y += gravity;
     }
 };
