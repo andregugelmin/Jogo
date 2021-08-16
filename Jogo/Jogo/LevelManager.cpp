@@ -20,10 +20,24 @@ namespace Nightmare {
     {
         graphicsManager = &gm;
         entitiesList.insert(player);
-        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 100.f), "enemy", player));
-        entitiesList.insert(new Goblun(sf::Vector2f(400.f, 100.f), "enemy", player));
-        entitiesList.insert(new SandSnake(sf::Vector2f(500.f, 100.f), "enemy2", player));
+        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
+        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
+        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
+        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
+        entitiesList.insert(new SandSnake(sf::Vector2f(800.f, 900.f), "enemy2", player));
 
+
+        initLevel(Level01);
+        entitiesList.initEntities(this, collisionManager);
+
+      
+        entitiesList.initEntities(this, collisionManager);
+        tilesList.initEntities(this, collisionManager);
+
+    }
+
+    void LevelManager::initLevel(char tm[HEIGHT][WIDTH])
+    {
         for (int i = 0; i < HEIGHT; i++)
             for (int j = 0; j < WIDTH; j++)
             {
