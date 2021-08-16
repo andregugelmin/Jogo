@@ -21,9 +21,9 @@ namespace Nightmare {
         graphicsManager = &gm;
         entitiesList.insert(player);
         entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
-        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
-        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
-        entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
+        entitiesList.insert(new Goblun(sf::Vector2f(200.f, 900.f), "enemy", player));
+        entitiesList.insert(new Goblun(sf::Vector2f(110.f, 900.f), "enemy", player));
+        entitiesList.insert(new Goblun(sf::Vector2f(150.f, 900.f), "enemy", player));
         entitiesList.insert(new SandSnake(sf::Vector2f(800.f, 900.f), "enemy2", player));
 
 
