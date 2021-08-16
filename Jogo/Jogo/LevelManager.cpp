@@ -7,7 +7,7 @@
 namespace Nightmare {
 
     LevelManager::LevelManager() :
-        isWindowClosed(false), graphicsManager(nullptr), player(nullptr)
+        isWindowClosed(false), levelChanged(false), graphicsManager(nullptr), player(nullptr)
     {
     }
 
@@ -28,11 +28,6 @@ namespace Nightmare {
 
 
         initLevel(Level01);
-        entitiesList.initEntities(this, collisionManager);
-
-      
-        entitiesList.initEntities(this, collisionManager);
-        tilesList.initEntities(this, collisionManager);
 
     }
 
@@ -41,41 +36,44 @@ namespace Nightmare {
         for (int i = 0; i < HEIGHT; i++)
             for (int j = 0; j < WIDTH; j++)
             {
-                if (Level01[i][j] == 'B') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/B.png", "tile"));
+                if (tm[i][j] == 'B') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/B.png", "tile"));
 
-                if (Level01[i][j] == 'C') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/C.png", "tile"));
+                if (tm[i][j] == 'C') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/C.png", "tile"));
 
-                if (Level01[i][j] == 'G') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/G.png", "tile"));
+                if (tm[i][j] == 'G') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/G.png", "tile"));
 
-                if (Level01[i][j] == 'H') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/H.png", "tile"));
+                if (tm[i][j] == 'H') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/H.png", "tile"));
 
-                if (Level01[i][j] == 'D') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32 + 25), "Textures/Tiles2/D.png", "tile"));
+                if (tm[i][j] == 'D') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32 + 25), "Textures/Tiles2/D.png", "tile"));
 
-                if (Level01[i][j] == 'E') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/E.png", "tile"));
+                if (tm[i][j] == 'E') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/E.png", "tile"));
 
-                if (Level01[i][j] == 'N') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/N.png", "tile"));
+                if (tm[i][j] == 'N') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/N.png", "tile"));
 
-                if (Level01[i][j] == 'O') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/O.png", "tile"));
+                if (tm[i][j] == 'O') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/O.png", "tile"));
 
-                if (Level01[i][j] == 'I') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/I.png", "tile"));
+                if (tm[i][j] == 'I') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/I.png", "tile"));
 
-                if (Level01[i][j] == 'K') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/K.png", "tile"));
+                if (tm[i][j] == 'K') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/K.png", "endLevel"));
+                if (tm[i][j] == 'X') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/K.png", "endGame"));
 
-                if (Level01[i][j] == 'J') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/J.png", "tile"));
+                if (tm[i][j] == 'J') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/J.png", "tile"));
 
-                if (Level01[i][j] == 'L') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/L.png", "tile"));
+                if (tm[i][j] == 'L') tilesList.insert(new Obstacle(sf::Vector2f(j * 32, i * 32), "Textures/Tiles2/L.png", "tile"));
 
-                if (Level01[i][j] == '0') entitiesList.insert(new GiantBat(sf::Vector2f(j * 32, i * 32), "enemy3", player));
+                if (tm[i][j] == '0') entitiesList.insert(new GiantBat(sf::Vector2f(j * 32, i * 32), "enemy3", player));
 
-                if (Level01[i][j] == ' ') continue;
+                if (tm[i][j] == ' ') continue;
             }
 
         entitiesList.initEntities(this, collisionManager);
         tilesList.initEntities(this, collisionManager);
 
-        collisionManager.setTileMapCollisions(Level01, HEIGHT, WIDTH);
+        collisionManager.setTileMapCollisions(tm, HEIGHT, WIDTH);
+
     }
 
+    
     void LevelManager::execute()
     {
         sf::Texture background;
@@ -132,9 +130,7 @@ namespace Nightmare {
 
             entitiesList.updatePhysicsEntities();
 
-            entitiesList.drawEntities();
-
-            
+            entitiesList.drawEntities();            
 
             graphicsManager->display();
 
@@ -178,5 +174,31 @@ namespace Nightmare {
     void LevelManager::setGraphicsManager(GraphicsManager* gm)
     {
         graphicsManager = gm;
+    }
+    void LevelManager::changeLevel()
+    {
+        if (!levelChanged) {
+            entitiesList.removeEntity(player);
+            collisionManager.removeAllColliders();
+            entitiesList.destroyEntities();
+            tilesList.destroyEntities();
+            entitiesList.insert(player);
+            entitiesList.insert(new Goblun(sf::Vector2f(100.f, 900.f), "enemy", player));
+            entitiesList.insert(new Goblun(sf::Vector2f(600.f, 900.f), "enemy", player));
+            entitiesList.insert(new Goblun(sf::Vector2f(110.f, 900.f), "enemy", player));
+            entitiesList.insert(new Goblun(sf::Vector2f(400.f, 900.f), "enemy", player));
+            entitiesList.insert(new SandSnake(sf::Vector2f(800.f, 500.f), "enemy2", player));
+
+            collisionManager.addCollider(player);
+            initLevel(Level02);
+            deleteColliders.clear();
+            
+            
+            execute();
+            levelChanged = true;
+        }
+        
+        
+        
     }
 };

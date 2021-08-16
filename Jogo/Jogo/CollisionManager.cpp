@@ -81,7 +81,7 @@ namespace Nightmare {
 				for (unsigned int j = left; j <= right; j++)
 				{
 					if (tileMap[i][j] == 'B' || tileMap[i][j] == 'C' || tileMap[i][j] == 'G' || tileMap[i][j] == 'H'
-						|| tileMap[i][j] == 'I' || tileMap[i][j] == 'K' || tileMap[i][j] == 'J' || tileMap[i][j] == 'L'
+						|| tileMap[i][j] == 'I' || tileMap[i][j] == 'J' || tileMap[i][j] == 'L'
 						|| tileMap[i][j] == 'E')
 					{
 
@@ -90,6 +90,10 @@ namespace Nightmare {
 					}
 					else if (tileMap[i][j] == 'D') {
 						c->collide("damageObstacle", sf::Vector2f(j * 32, i * 32 + 25), sf::Vector2f(32, 7));
+					}
+					else if(tileMap[i][j] == 'K')
+					{
+						c->collide("endLevel", sf::Vector2f(j * 32, i * 32), sf::Vector2f(32, 32));
 					}
 				}
 		}

@@ -17,6 +17,7 @@ namespace Nightmare {
 
     private:
         bool isWindowClosed;
+        bool levelChanged;
         GraphicsManager* graphicsManager;
         CollisionManager collisionManager;
         EntityList entitiesList;
@@ -94,7 +95,7 @@ namespace Nightmare {
         "C                                BB                                                                                                                                            C",
         "C                              BBCCBB          BBBB    BBB   BBB                                                                                                               C",
         "C                            BBCCCCCCBB                                                                                         BBB    BBB                                     C",
-        "C            BB            BBCCCCCCCCCCBB                             E    E     E   E    E     E    E       E     E   E                                                    K  C",
+        "C            BB            BBCCCCCCCCCCBB                             E    E     E   E    E     E    E       E     E   E                                                    X  C",
         "CBBBBBBBBBBBBCCBBBBBBBBBBBBCCCCCCCCCCCCCCBBBBB                     DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD               BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBC",
         "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC                     BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB               CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
         "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC                     CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC               CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
@@ -120,5 +121,7 @@ namespace Nightmare {
         CollisionManager* getCollisionManager();
         void setPlayer(Player* p);
         void setGraphicsManager(GraphicsManager* gm);
+
+        void changeLevel();
     };
 };

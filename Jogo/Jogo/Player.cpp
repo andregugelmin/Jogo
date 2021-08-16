@@ -91,7 +91,7 @@ namespace Nightmare {
             if (hitCooldown <= 0) {
                 hitCooldown = 10;
                 numLife--;
-                setPosition(spawnPosition.x, spawnPosition.y);
+                //setPosition(spawnPosition.x, spawnPosition.y);
                 std::cout << numLife << std::endl;
             }
             
@@ -137,6 +137,10 @@ namespace Nightmare {
                     }
                 }
             }
+        }
+
+        if (otherId == "endLevel") {
+            level->changeLevel();
         }
     }
 
